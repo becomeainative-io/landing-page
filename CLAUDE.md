@@ -10,6 +10,7 @@
 - Main page is `/index.html`. It is currently a "coming soon" placeholder.
 - Shared assets live in `/shared/` (images in `/shared/img/`, favicon at `/shared/favicon.svg`).
 - Links to shared files are root-relative (`/shared/...`), which only works on the custom domain.
+- The domain sits behind Cloudflare, which caches CSS/JS for hours. Pages link `site.css` and `site.js` with a version query (`?v=2`); bump it on every page whenever either file changes, or visitors get the old file.
 
 ## Pasting HTML from Claude Design
 - Extract inline/base64 images into `/shared/img/` and reference them with relative links.
