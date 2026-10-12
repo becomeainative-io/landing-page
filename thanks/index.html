@@ -11,7 +11,7 @@
   <meta property="og:site_name" content="Become AI Native">
   <meta property="og:title" content="Thank You — Become AI Native">
   <meta property="og:description" content="Thanks for joining the Become AI Native waitlist.">
-  <meta property="og:url" content="https://__DOMAIN__/thanks/">
+  <meta property="og:url" content="https://becomeai.io/thanks/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Thank You — Become AI Native">
   <meta name="twitter:description" content="Thanks for joining the Become AI Native waitlist.">
@@ -22,14 +22,42 @@
   <link rel="stylesheet" href="/shared/site.css">
 </head>
 <body>
-  <nav class="nav"><a class="wordmark" href="/">Become AI Native</a></nav>
-  <main class="main">
-    <p class="eyebrow">You're on the list</p>
-    <h1>Thank you</h1>
-    <p class="lead">We'll be in touch.</p>
-    <a class="btn btn--outline" href="/">&larr; Back to home</a>
-  </main>
-  <footer class="footer"><span>Become AI Native</span><a href="mailto:__EMAIL__">__EMAIL__</a><a href="/privacy/">Privacy</a></footer>
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo" aria-label="Become AI Native, home">
+      <span class="logo__word">become</span>
+      <span class="logo__track">ai native</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#method">Method</a>
+      <a href="/#program">Program</a>
+      <a href="/#team">Team</a>
+      <a href="/#apply" class="btn">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main class="page apply">
+  <div class="container">
+    <div class="form-card">
+      <div class="thanks is-visible" role="status">
+        <svg class="tick" width="64" height="54" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 18 L14 28 L36 4" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h1 class="thanks__title">You're on the list.</h1>
+        <p class="muted">We'll email you an invite to the showcase webinar on 24 October. Cohort 1 starts on 2 November.</p>
+        <a class="btn-ghost" href="/">← Back to home</a>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="container">
+    <a href="/" class="logo" aria-label="Become AI Native, home">
+      <span class="logo__word">become</span>
+      <span class="logo__track">ai native</span>
+    </a>
+    <div class="label label--sm">PMs first. More professions next. · becomeai.io</div>
+    <nav class="footer__links label label--sm" aria-label="Footer"><a href="__LINKEDIN__" rel="noopener">Connect on LinkedIn</a><a href="/privacy/">Privacy</a></nav>
+  </div>
+</footer>
   <script>
     // Count a GA4 lead only when the visitor arrives here from the waitlist form (flag set in site.js).
     try {

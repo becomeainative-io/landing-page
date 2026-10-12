@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://__DOMAIN__/</loc>
+    <loc>https://becomeai.io/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>
-    <loc>https://__DOMAIN__/waitlist/</loc>
+    <loc>https://becomeai.io/waitlist/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>
-    <loc>https://__DOMAIN__/privacy/</loc>
+    <loc>https://becomeai.io/privacy/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
 </urlset>
