@@ -1,8 +1,8 @@
 # Become AI Native site
 
 ## Hosting
-- Static site on GitHub Pages (repo `lira9903/Become-AI-Native`, branch `main`, root folder), custom domain `becomeai.io`.
-- **Never delete `CNAME`.** It must contain exactly `becomeai.io`.
+- Static site on GitHub Pages (repo `lira9903/Become-AI-Native`, branch `main`, root folder), custom domain `becomeainative.io`.
+- **Never delete `CNAME`.** It must contain exactly `becomeainative.io`.
 - Deploying = committing and pushing to `main`. GitHub Pages rebuilds automatically in about a minute.
 
 ## Structure
@@ -24,7 +24,7 @@
 - Hidden fields:
   - `<input type="hidden" name="access_key" value="b009bce9-d147-406b-9018-aedd5c86e217">` (same key as PR for Cyber; submissions go to the same inbox)
   - `<input type="hidden" name="subject" value="...">`
-  - `<input type="hidden" name="redirect" value="https://becomeai.io/thanks/">`
+  - `<input type="hidden" name="redirect" value="https://becomeainative.io/thanks/">`
   - Honeypot: `<input type="checkbox" name="botcheck" class="hidden" style="display:none">`
 - The form needs class `form` so `site.js` sets the `bain_lead` flag on submit.
 
@@ -47,7 +47,7 @@
 
 ## SEO + sharing (every page)
 - Every page's `<head>` has, right after `<meta name="description">`:
-  - `<link rel="canonical" href="https://becomeai.io/<path>/">` — always the https://becomeai.io URL with trailing slash (`/` for home). Skip on noindex pages.
+  - `<link rel="canonical" href="https://becomeainative.io/<path>/">` — always the https://becomeainative.io URL with trailing slash (`/` for home). Skip on noindex pages.
   - Open Graph + Twitter card tags: `og:type`, `og:site_name` (Become AI Native), `og:title` and `og:description` (same as `<title>` / meta description), `og:url` (canonical URL), `twitter:card`, `twitter:title`, `twitter:description`. Copy the block from `/waitlist/index.html`.
   - Once a 1200x630 share image exists at `/shared/img/og-image.png`, add `og:image` (+ width, height, alt) and `twitter:image` with absolute URLs, and switch `twitter:card` to `summary_large_image`.
 - Pages that shouldn't be indexed (`/thanks/`, `404.html`, any utility page) get `<meta name="robots" content="noindex">` instead of a canonical, and stay out of the sitemap.
