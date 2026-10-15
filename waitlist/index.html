@@ -57,10 +57,11 @@
           <input type="email" name="email" autocomplete="email" required>
         </label>
         <label class="field">LinkedIn profile
-          <input type="url" name="linkedin" placeholder="https://linkedin.com/in/…">
+          <input type="url" name="linkedin" required placeholder="https://linkedin.com/in/…">
         </label>
         <label class="field">Your role
-          <select name="role">
+          <select name="role" required>
+            <option value="" disabled selected>Choose your role</option>
             <option>Project manager</option>
             <option>Product manager</option>
             <option>Product owner</option>
@@ -70,7 +71,8 @@
           </select>
         </label>
         <label class="field">Your situation
-          <select name="situation">
+          <select name="situation" required>
+            <option value="" disabled selected>Choose your situation</option>
             <option>Employed, company pushing AI</option>
             <option>Employed, little AI</option>
             <option>Between roles</option>
@@ -78,7 +80,7 @@
           </select>
         </label>
         <label class="field">What's the one thing you want to change in how you work?
-          <textarea name="change" rows="3"></textarea>
+          <textarea name="change" rows="3" required></textarea>
         </label>
 
         <button type="submit" class="btn btn--block">Apply for Cohort 0 →</button>
