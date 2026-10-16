@@ -23,7 +23,7 @@
 ## Forms (Web3Forms)
 - `action="https://api.web3forms.com/submit"`, `method="POST"`
 - Hidden fields:
-  - `<input type="hidden" name="access_key" value="b009bce9-d147-406b-9018-aedd5c86e217">` (same key as PR for Cyber; submissions go to the same inbox)
+  - `<input type="hidden" name="access_key" value="bb4e67a1-2a78-47f3-b6ac-e455f8ccfc19">` (Become AI Native's own key — the "Become AI Native" form in Web3Forms. Not shared with PR for Cyber.)
   - `<input type="hidden" name="subject" value="...">`
   - `<input type="hidden" name="redirect" value="https://becomeainative.io/thanks/">`
   - Honeypot: `<input type="checkbox" name="botcheck" class="hidden" style="display:none">`
