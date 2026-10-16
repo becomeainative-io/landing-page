@@ -1,7 +1,8 @@
 # Become AI Native site
 
 ## Hosting
-- Static site on GitHub Pages (repo `becomeainative-io/landing-page`, public; the org's main repo `becomeainative.io-main-project` is separate and private, branch `main`, root folder), custom domain `becomeainative.io`.
+- Static site on GitHub Pages (repo `becomeainative-io/landing-page`, public, branch `main`, root folder), custom domain `becomeainative.io`.
+- The org's main repo `becomeainative.io-main-project` is separate and stays private. Don't move site files into it.
 - **Never delete `CNAME`.** It must contain exactly `becomeainative.io`.
 - Deploying = committing and pushing to `main`. GitHub Pages rebuilds automatically in about a minute.
 
