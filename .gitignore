@@ -1,1 +1,8 @@
 .DS_Store
+
+# Local Claude Code settings
+.claude/
+
+# Drafts and notes: only CLAUDE.md belongs in the repo (everything here gets published)
+*.md
+!CLAUDE.md
