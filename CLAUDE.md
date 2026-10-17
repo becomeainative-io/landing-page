@@ -25,7 +25,7 @@
 - The Cohort 3 application form is the Tally form `4aXEqb` ("Cohort 3 application", BecomeAiNative.io workspace), embedded on `/` and `/waitlist/`:
   `<iframe class="tally-embed" src="https://tally.so/embed/4aXEqb?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;page=<page>" loading="lazy" title="Cohort 3 application"></iframe>`
 - `page` fills the form's hidden field so submissions show which page they came from.
-- Edit questions, styling and notifications in Tally, not here. Spec: `content/tally/tally-cohort-0-application.md` in the main project.
+- Edit questions, styling and notifications in Tally, not here. Spec: `content/tally/tally-cohort-3-application.md` in the main project.
 - `site.js` listens for Tally's `postMessage` events: on `Tally.FormSubmitted` it sets the `bain_lead` flag and goes to `/thanks/`. Tally's embed script (`tally.so/widgets/embed.js`) is not loaded, so there is no auto-height: the iframe height is fixed in `site.css` (`.tally-embed`). Raise it if questions are added.
 - Web3Forms is no longer used.
 
