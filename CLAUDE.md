@@ -21,14 +21,13 @@
 ## Replacing a page with a new Claude Design export
 - Keep the existing form wiring, favicon and meta tags.
 
-## Forms (Web3Forms)
-- `action="https://api.web3forms.com/submit"`, `method="POST"`
-- Hidden fields:
-  - `<input type="hidden" name="access_key" value="bb4e67a1-2a78-47f3-b6ac-e455f8ccfc19">` (Become AI Native's own key — the "Become AI Native" form in Web3Forms. Not shared with PR for Cyber.)
-  - `<input type="hidden" name="subject" value="...">`
-  - `<input type="hidden" name="redirect" value="https://becomeainative.io/thanks/">`
-  - Honeypot: `<input type="checkbox" name="botcheck" class="hidden" style="display:none">`
-- The form needs class `form` so `site.js` sets the `bain_lead` flag on submit.
+## Forms (Tally)
+- The Cohort 0 application form is the Tally form `4aXEqb` ("Cohort 0 application", BecomeAiNative.io workspace), embedded on `/` and `/waitlist/`:
+  `<iframe class="tally-embed" src="https://tally.so/embed/4aXEqb?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;page=<page>" loading="lazy" title="Cohort 0 application"></iframe>`
+- `page` fills the form's hidden field so submissions show which page they came from.
+- Edit questions, styling and notifications in Tally, not here. Spec: `content/tally/tally-cohort-0-application.md` in the main project.
+- `site.js` listens for Tally's `postMessage` events: on `Tally.FormSubmitted` it sets the `bain_lead` flag and goes to `/thanks/`. Tally's embed script (`tally.so/widgets/embed.js`) is not loaded, so there is no auto-height: the iframe height is fixed in `site.css` (`.tally-embed`). Raise it if questions are added.
+- Web3Forms is no longer used.
 
 ## Analytics + cookie consent (every page)
 - Every page — including new ones — must include this snippet in `<head>`, right after the favicon link:
@@ -39,11 +38,11 @@
   ```
 - Privacy-strict: `consent.js` injects `gtag.js` **only after the visitor clicks Accept** (or has accepted before). With no choice or Decline there must be zero requests to Google domains. Never add a `<script src="https://www.googletagmanager.com/...">` tag to a page, and never default consent to granted.
 - GA4 Measurement ID is set in `consent.js`. While it is the placeholder `G-XXXXXXXXXX`, no banner is shown and GA never loads.
-- `/thanks/` fires the `generate_lead` event when the `bain_lead` sessionStorage flag (set on waitlist form submit in `site.js`) is present. It only reaches Google if the visitor accepted.
+- `/thanks/` fires the `generate_lead` event when the `bain_lead` sessionStorage flag (set by `site.js` when the Tally form is submitted) is present. It only reaches Google if the visitor accepted.
 - Footers link to `/privacy/`. Update the privacy page if new data collection or third-party services are added.
 
 ## No third-party requests
-- Pages may only load files from this site. The only allowed external requests are Google Analytics after Accept, and the Web3Forms form POST on submit.
+- Pages may only load files from this site. The only allowed external requests are Google Analytics after Accept, and the Tally form iframe (`tally.so`) on pages with the application form.
 - Fonts: system font stack for now. New fonts must be self-hosted in `/shared/fonts/` (woff2 + licence). Never link to Google Fonts or any other CDN.
 - When a Claude Design export includes font links or CDN scripts, replace them with self-hosted files or static HTML.
 

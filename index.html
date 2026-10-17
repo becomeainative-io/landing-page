@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/shared/consent.css">
 <script src="/shared/consent.js"></script>
 <link rel="preload" href="/shared/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shared/site.css?v=4">
+<link rel="stylesheet" href="/shared/site.css?v=5">
 </head>
 <body>
 
@@ -235,49 +235,11 @@
     </div>
 
     <div class="form-card">
-      <form class="form" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="bb4e67a1-2a78-47f3-b6ac-e455f8ccfc19">
-        <input type="hidden" name="subject" value="New Cohort 0 application — becomeainative.io">
-        <input type="hidden" name="redirect" value="https://becomeainative.io/thanks/">
-        <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-
+      <div class="form">
         <div class="form__meta"><span>APPLICATION · 3 MIN</span><span>We reply to everyone personally</span></div>
-
-        <label class="field">Name
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label class="field">Email
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label class="field">LinkedIn profile
-          <input type="url" name="linkedin" required placeholder="https://linkedin.com/in/…">
-        </label>
-        <label class="field">Your role
-          <select name="role" required>
-            <option value="" disabled selected>Choose your role</option>
-            <option>Project manager</option>
-            <option>Product manager</option>
-            <option>Product owner</option>
-            <option>Business analyst</option>
-            <option>Scrum Master</option>
-            <option>Other</option>
-          </select>
-        </label>
-        <label class="field">Your situation
-          <select name="situation" required>
-            <option value="" disabled selected>Choose your situation</option>
-            <option>Employed, company pushing AI</option>
-            <option>Employed, little AI</option>
-            <option>Between roles</option>
-            <option>Freelance</option>
-          </select>
-        </label>
-        <label class="field">What's the one thing you want to change in how you work?
-          <textarea name="change" rows="3" required></textarea>
-        </label>
-
-        <button type="submit" class="btn btn--block">Apply for Cohort 0 →</button>
-      </form>
+        <!-- Tally form "Cohort 0 application" (4aXEqb). Submit redirect is handled in site.js. -->
+        <iframe class="tally-embed" src="https://tally.so/embed/4aXEqb?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;page=home" loading="lazy" title="Cohort 0 application"></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -296,6 +258,6 @@
   </div>
 </footer>
 
-<script src="/shared/site.js?v=4"></script>
+<script src="/shared/site.js?v=5"></script>
 </body>
 </html>
