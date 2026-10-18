@@ -1,4 +1,4 @@
-// Become AI Native — page behaviour.
+// Become AI Native - page behaviour.
 (function () {
   // Current cohort, worked out from today's date. A new cohort opens every month and
   // starts on the 15th of the following month: October 2026 is Cohort 3 (starts 15 November),

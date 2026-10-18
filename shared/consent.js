@@ -1,4 +1,4 @@
-// Become AI Native — Google Analytics 4 behind a cookie consent banner.
+// Become AI Native - Google Analytics 4 behind a cookie consent banner.
 // Privacy-strict: gtag.js is only fetched after the visitor clicks Accept. With no choice or Decline,
 // nothing is requested from Google. Calls to gtag() before that just queue up locally in dataLayer.
 (function () {
