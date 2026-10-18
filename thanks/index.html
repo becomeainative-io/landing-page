@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thank You — Become AI Native</title>
-  <meta name="description" content="Thanks for joining the Become AI Native waitlist.">
+  <meta name="description" content="Thanks for applying to a Become AI Native cohort.">
   <meta name="robots" content="noindex">
   <!-- Open Graph / Twitter card -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Become AI Native">
   <meta property="og:title" content="Thank You — Become AI Native">
-  <meta property="og:description" content="Thanks for joining the Become AI Native waitlist.">
+  <meta property="og:description" content="Thanks for applying to a Become AI Native cohort.">
   <meta property="og:url" content="https://becomeainative.io/thanks/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Thank You — Become AI Native">
-  <meta name="twitter:description" content="Thanks for joining the Become AI Native waitlist.">
+  <meta name="twitter:description" content="Thanks for applying to a Become AI Native cohort.">
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
   <!-- Google Analytics 4 + cookie consent (gtag.js loads only after Accept) -->
   <link rel="stylesheet" href="/shared/consent.css">
@@ -41,8 +41,8 @@
     <div class="form-card">
       <div class="thanks is-visible" role="status">
         <svg class="tick" width="64" height="54" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 18 L14 28 L36 4" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h1 class="thanks__title">You're on the list.</h1>
-        <p class="muted">We'll email you before Cohort <span data-cohort>3</span> starts.</p>
+        <h1 class="thanks__title">Application received.</h1>
+        <p class="muted">We'll review your application for Cohort <span data-cohort>3</span> and reply to you personally by email.</p>
         <a class="btn-ghost" href="/">← Back to home</a>
       </div>
     </div>
@@ -60,11 +60,11 @@
 </footer>
 <script src="/shared/site.js?v=7"></script>
   <script>
-    // Count a GA4 lead only when the visitor arrives here from the waitlist form (flag set in site.js).
+    // Count a GA4 lead only when the visitor arrives here from the application form (flag set in site.js).
     try {
       if (sessionStorage.getItem("bain_lead") === "1") {
         sessionStorage.removeItem("bain_lead");
-        gtag("event", "generate_lead", { form_name: "waitlist" });
+        gtag("event", "generate_lead", { form_name: "application" });
       }
     } catch (e) {}
   </script>
