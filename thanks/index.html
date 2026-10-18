@@ -19,7 +19,7 @@
   <!-- Google Analytics 4 + cookie consent (gtag.js loads only after Accept) -->
   <link rel="stylesheet" href="/shared/consent.css">
   <script src="/shared/consent.js"></script>
-  <link rel="stylesheet" href="/shared/site.css?v=6">
+  <link rel="stylesheet" href="/shared/site.css?v=7">
 </head>
 <body>
 <header class="header">
@@ -32,7 +32,7 @@
       <a href="/#method">Method</a>
       <a href="/#program">Program</a>
       <a href="/#team">Team</a>
-      <a href="/#apply" class="btn">Apply for Cohort 3</a>
+      <a href="/#apply" class="btn">Apply for Cohort <span data-cohort>3</span></a>
     </nav>
   </div>
 </header>
@@ -42,7 +42,7 @@
       <div class="thanks is-visible" role="status">
         <svg class="tick" width="64" height="54" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 18 L14 28 L36 4" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h1 class="thanks__title">You're on the list.</h1>
-        <p class="muted">We'll email you before Cohort 3 starts.</p>
+        <p class="muted">We'll email you before Cohort <span data-cohort>3</span> starts.</p>
         <a class="btn-ghost" href="/">← Back to home</a>
       </div>
     </div>
@@ -58,6 +58,7 @@
     <nav class="footer__links label label--sm" aria-label="Footer"><a href="__LINKEDIN__" rel="noopener">Connect on LinkedIn</a><a href="/privacy/">Privacy</a></nav>
   </div>
 </footer>
+<script src="/shared/site.js?v=7"></script>
   <script>
     // Count a GA4 lead only when the visitor arrives here from the waitlist form (flag set in site.js).
     try {
