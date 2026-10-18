@@ -296,7 +296,7 @@ h1, h2, p, blockquote { margin: 0; }
 .skill__body { display: flex; flex-direction: column; gap: 4px; }
 .skill__body b { font-size: 17px; }
 .skill__body span { font-size: 15px; color: var(--muted); }
-.program__note { font-size: 30px; line-height: 1.1; transform: rotate(-2deg); align-self: flex-start; }
+.program__note { font-size: 30px; line-height: 1.1; transform: rotate(-2deg); align-self: stretch; width: 100%; text-align: right; }
 
 .outcomes { background: var(--desk); padding: 28px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; }
 .outcomes__list { display: flex; flex-wrap: wrap; gap: 14px 28px; font-weight: 700; font-size: 19px; margin: 0; padding: 0; list-style: none; }
