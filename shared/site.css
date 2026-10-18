@@ -390,7 +390,7 @@ img.person__photo { display: block; padding: 0; height: auto; }
 
 /* =========================================================
    SITE ADDITIONS - footer links and inner pages
-   (/waitlist/, /thanks/, /privacy/, 404)
+   (/privacy/, 404)
    ========================================================= */
 .footer__links { display: flex; flex-wrap: wrap; gap: 20px; }
 .footer__links a { color: var(--muted); }

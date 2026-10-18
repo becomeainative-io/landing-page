@@ -21,22 +21,21 @@
   fill("[data-cohort-code]", code);
   document.title = document.title.replace(/Cohort \d+/, "Cohort " + cohort);
 
-  // The application form is a Tally embed (iframe). Pass the cohort number to the form's
-  // hidden "cohort" field. When Tally reports a submit, set the bain_lead flag (lets /thanks/
-  // fire the GA4 generate_lead event once) and go to /thanks/.
+  // Pass the cohort to Tally. Its confirmation stays inside the iframe.
   var frame = document.querySelector(".tally-embed");
   if (!frame) return;
   frame.src = frame.src.replace(/([?&])cohort=\d+/, "$1").replace(/&$/, "") + "&cohort=" + cohort;
+  var leadRecorded = false;
   window.addEventListener("message", function (e) {
-    if (e.origin !== "https://tally.so") return;
+    if (e.origin !== "https://tally.so" || e.source !== frame.contentWindow) return;
     var data = e.data;
     if (typeof data === "string") {
       try { data = JSON.parse(data); } catch (err) { return; }
     }
-    if (!data || typeof data.event !== "string") return;
-    if (data.event === "Tally.FormSubmitted") {
-      try { sessionStorage.setItem("bain_lead", "1"); } catch (err) {}
-      window.location.href = "/thanks/";
+    if (!data || data.event !== "Tally.FormSubmitted" || leadRecorded) return;
+    leadRecorded = true;
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "generate_lead", { form_name: "application" });
     }
   });
 })();
