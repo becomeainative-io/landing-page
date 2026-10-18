@@ -309,7 +309,7 @@ h1, h2, p, blockquote { margin: 0; }
 .fit-text { font-size: 20px; }
 .team__intro { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
 .team__title { font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.02; letter-spacing: -0.04em; }
-.team__intro p { max-width: 720px; font-size: 20px; }
+.team__intro p { width: 100%; font-size: 20px; }
 .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
 .person { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
 .person__photo {
