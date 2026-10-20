@@ -2,7 +2,7 @@
 // Privacy-strict: gtag.js is only fetched after the visitor clicks Accept. With no choice or Decline,
 // nothing is requested from Google. Calls to gtag() before that just queue up locally in dataLayer.
 (function () {
-  var GA_ID = "G-XXXXXXXXXX";
+  var GA_ID = "G-DL6QVVYFXH";
   var KEY = "bain_consent"; // "granted" | "denied"
 
   window.dataLayer = window.dataLayer || [];
