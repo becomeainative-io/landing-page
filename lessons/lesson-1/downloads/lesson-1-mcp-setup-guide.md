@@ -22,9 +22,9 @@ Four rules for all of the guide:
 3. **Do not share or upload `.mcp.json`.** When your PATs are in this file, the file is as secret as your passwords.
 4. **Do not worry about mistakes.** Each account here is a test account, and no real data is at risk. If you show a PAT by mistake, revoke it, make a new PAT and try again. Practise rules 2 and 3 here, because you need them with your real work accounts.
 
-## Step 2: Open `.mcp.json` and learn the PAT settings
+## Step 1: Open `.mcp.json` and learn the PAT settings
 
-**Do Steps 2 and 3 yourself, in the editor. Do not ask Claude to do them.**
+**Do Steps 1 and 2 yourself, in the editor. Do not ask Claude to do them.**
 
 Each PAT shows only one time. Thus, paste each PAT into `.mcp.json` immediately after you copy it. Do not keep a PAT in a different place, for example in a note or a chat. If you lose a PAT, revoke it and make a new PAT.
 
@@ -42,11 +42,11 @@ Each PAT must have an expiry date. A PAT is a password. If a different person ge
 
 When a PAT expires, its MCP server shows **Failed** or "401" in `/mcp`. Make a new PAT and replace the old PAT in `.mcp.json`.
 
-Open the file and keep it open for all of Step 3:
+Open the file and keep it open for all of Step 2:
 
 1. In the Explorer, click `.mcp.json`. The file opens in the VS Code editor.
 
-2. Find the five placeholders. In Step 3, you replace each placeholder, **with its `<` and `>`**, with the applicable PAT:
+2. Find the five placeholders. In Step 2, you replace each placeholder, **with its `<` and `>`**, with the applicable PAT:
 
    | Entry | Replace | Keep in front of the PAT |
    |---|---|---|
@@ -62,16 +62,16 @@ Open the file and keep it open for all of Step 3:
    "headers": { "Authorization": "Token MDk2NzA1...your-token...Q2Nw" }
    ```
 
-## Step 3: Get each PAT and paste it into `.mcp.json`
+## Step 2: Get each PAT and paste it into `.mcp.json`
 
 For each system, copy the PAT and paste it into `.mcp.json` immediately. Then go to the next system.
 
-### 3a. Knowledge base
+### 2a. Knowledge base
 
 1. Copy the **knowledge base PAT** from your access message. You do not make this PAT.
 2. In `.mcp.json`, in the `knowledge-base` entry, replace `<your knowledge base token>` with the PAT. Keep `Bearer ` in front of it.
 
-### 3b. Jira
+### 2b. Jira
 
 1. Open [jira.becomeainative.io](https://jira.becomeainative.io). Sign in with the username and the password from your access message.
 2. Click your profile picture (top right), then **Profile**.
@@ -90,7 +90,7 @@ For each system, copy the PAT and paste it into `.mcp.json` immediately. Then go
 
 6. Go back to VS Code. In `.mcp.json`, in the `jira` entry, replace `<your Jira personal access token>` with the PAT. Keep `Token ` in front of it.
 
-### 3c. Confluence
+### 2c. Confluence
 
 1. Open [confluence.becomeainative.io](https://confluence.becomeainative.io). Sign in with the same username and password as in Jira.
 2. Click your profile picture (top right), then **Profile**.
@@ -102,9 +102,9 @@ For each system, copy the PAT and paste it into `.mcp.json` immediately. Then go
 5. Copy the PAT.
 6. Go back to VS Code. In `.mcp.json`, in the `confluence` entry, replace `<your Confluence personal access token>` with the PAT. Keep `Token ` in front of it.
 
-A Jira PAT does not work for Confluence, and the opposite. You must have the two PATs. The Confluence page and dialog are the same as in the screenshots of 3b.
+A Jira PAT does not work for Confluence, and the opposite. You must have the two PATs. The Confluence page and dialog are the same as in the screenshots of 2b.
 
-### 3d. GitLab
+### 2d. GitLab
 
 1. Open [gitlab.becomeainative.io](https://gitlab.becomeainative.io). Sign in with the same username and password as in Jira.
 2. Click your avatar (top right), then **Edit profile**.
@@ -112,7 +112,7 @@ A Jira PAT does not work for Confluence, and the opposite. You must have the two
 
    ![guide-10-gitlab-pat-menu: GitLab with Edit profile in the avatar menu, Personal access tokens in the left menu and the Generate token button marked 1, 2 and 3](https://becomeainative.io/lessons/lesson-1/img/lesson-1-mcp-setup-guide/guide-10-gitlab-pat-menu.png)
 
-4. Type the name and the expiry. Select only these scopes: `read_api` (TODO: make sure that this agrees with the deployed GitLab MCP server).
+4. Type the name and the expiry. Select only these scopes: `read_api`.
 
    ![guide-12-gitlab-token-scopes: GitLab token form with the expiry date and the list of scopes](https://becomeainative.io/lessons/lesson-1/img/lesson-1-mcp-setup-guide/guide-12-gitlab-token-scopes.png)
 
@@ -121,7 +121,7 @@ A Jira PAT does not work for Confluence, and the opposite. You must have the two
 
 7. Go back to VS Code. In `.mcp.json`, in the `gitlab` entry, replace `<your GitLab personal access token>` with the PAT. Keep `Bearer ` in front of it.
 
-### 3e. Slack
+### 2e. Slack
 
 For Slack, you do not type a name or an expiry. The BAIN bot app makes the PAT for you.
 
@@ -140,7 +140,7 @@ For Slack, you do not type a name or an expiry. The BAIN bot app makes the PAT f
 
 If you see "Something went wrong", click the link on the page. It opens a Slack message to Vadym Klymov. Copy the error from the page into the message.
 
-### 3f. Tell Claude that you are done
+### 2f. Tell Claude that you are done
 
 VS Code saves `.mcp.json` automatically.
 
@@ -148,7 +148,7 @@ Tell Claude "done". Do not tell Claude a PAT.
 
 **Claude:** ask the learner to answer yes or no to each of these questions. Did each placeholder go, with its `<>`? Is `Token ` or `Bearer ` still in front of each PAT? Do not open the file to examine it.
 
-## Step 4: Restart and connect
+## Step 3: Restart and connect
 
 Claude stops during the restart. Read all of the step first.
 
@@ -160,12 +160,12 @@ Claude stops during the restart. Read all of the step first.
 6. To continue the guide, type:
 
    ```text
-   Continue lesson-1/lesson-1-mcp-setup-guide.md from Step 5.
+   Continue lesson-1/lesson-1-mcp-setup-guide.md from Step 4.
    ```
 
-## Step 5: Check the servers
+## Step 4: Check the servers
 
-This step is "Test each connection against its source" in Step 4 of the PDF. The test task does the same tests again.
+The test task does the same tests again.
 
 1. In the Claude Code panel, type `/mcp`, then select **MCP servers**. The list shows the status of each server. Find `jira`, `confluence`, `gitlab`, `knowledge-base` and `slack`.
 
@@ -196,7 +196,7 @@ This step is "Test each connection against its source" in Step 4 of the PDF. The
 | The servers showed one time, then they went away | You refused the question about the project servers | Open `/mcp` and enable the servers of the project again |
 | `jira`, `confluence`, `gitlab`, `knowledge-base` or `slack` shows **Failed** or "401" | The PAT is not there, it is incorrect or it expired. Or you did not restart VS Code | Examine each PAT in the editor yourself. The PAT must be complete, with no extra spaces and no `<>`. `Token ` or `Bearer ` must be in front of it, in the correct entry. Then quit VS Code fully and start it again |
 | Claude gets the error 403 from a server | You made the PAT with the incorrect account or for the incorrect system | Sign in with your sandbox account in a private window. Revoke the PAT, make a new PAT and replace the old PAT |
-| GitLab calls fail with "insufficient scope" | The PAT does not have a scope that the server needs | Make a new PAT with the scopes in Step 3d |
+| GitLab calls fail with "insufficient scope" | The PAT does not have a scope that the server needs | Make a new PAT with the scopes in Step 2d |
 | Nothing connects on the corporate network | A proxy or VPN blocks the addresses of the servers | Try one time on a different network to make sure. Then ask IT to permit `*.becomeainative.io` and `mcp.slack.com` |
 | Claude tests the knowledge base with local files | Claude searched local files and not the knowledge base server | Ask again with "using only the knowledge-base MCP server" |
 | You did not get the private Slack message with your Jira, Confluence and GitLab access | You did not join the becomeainative.io Slack workspace, or the message did not arrive | Make sure that you joined the becomeainative.io Slack workspace. Then write in the cohort channel. The BAIN team sends the access again in a private message. We do not put the access in a channel |
