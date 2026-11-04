@@ -5,3 +5,6 @@
 
 # Drafts and notes: only CLAUDE.md belongs in the repo (everything here gets published)
 *.md
+
+# Lesson downloads are published on purpose
+!lessons/*/downloads/*.md
