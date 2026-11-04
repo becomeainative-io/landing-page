@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "jira": {
+      "type": "http",
+      "url": "https://mcp-atlassian.becomeainative.io/mcp",
+      "headers": { "Authorization": "Token <your Jira personal access token>" }
+    },
+    "confluence": {
+      "type": "http",
+      "url": "https://mcp-atlassian.becomeainative.io/mcp",
+      "headers": { "Authorization": "Token <your Confluence personal access token>" }
+    },
+    "gitlab": {
+      "type": "http",
+      "url": "https://mcp-gitlab.becomeainative.io/mcp",
+      "headers": { "Authorization": "Bearer <your GitLab personal access token>" }
+    },
+    "knowledge-base": {
+      "type": "http",
+      "url": "https://kb.becomeainative.io/mcp",
+      "headers": { "Authorization": "Bearer <your knowledge base token>" }
+    },
+    "slack": {
+      "type": "http",
+      "url": "https://mcp.slack.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <your slack personal token>"
+      }
+    }
+  }
+}
