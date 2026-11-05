@@ -3,12 +3,12 @@
     "jira": {
       "type": "http",
       "url": "https://mcp-atlassian.becomeainative.io/mcp",
-      "headers": { "Authorization": "Token <your Jira personal access token>" }
+      "headers": { "Authorization": "Bearer <your Jira personal access token>" }
     },
     "confluence": {
       "type": "http",
       "url": "https://mcp-atlassian.becomeainative.io/mcp",
-      "headers": { "Authorization": "Token <your Confluence personal access token>" }
+      "headers": { "Authorization": "Bearer <your Confluence personal access token>" }
     },
     "gitlab": {
       "type": "http",

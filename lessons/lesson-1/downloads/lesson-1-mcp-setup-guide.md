@@ -51,15 +51,15 @@ Open the file and keep it open for all of Step 2:
    | Entry | Replace | Keep in front of the PAT |
    |---|---|---|
    | `knowledge-base` | `<your knowledge base token>` | `Bearer ` (with the space) |
-   | `jira` | `<your Jira personal access token>` | `Token ` (with the space) |
-   | `confluence` | `<your Confluence personal access token>` | `Token ` (with the space) |
+   | `jira` | `<your Jira personal access token>` | `Bearer ` (with the space) |
+   | `confluence` | `<your Confluence personal access token>` | `Bearer ` (with the space) |
    | `gitlab` | `<your GitLab personal access token>` | `Bearer ` (with the space) |
    | `slack` | `<your slack personal token>` | `Bearer ` (with the space) |
 
    A completed line is similar to this line, but with your own PAT:
 
    ```json
-   "headers": { "Authorization": "Token MDk2NzA1...your-token...Q2Nw" }
+   "headers": { "Authorization": "Bearer MDk2NzA1...your-token...Q2Nw" }
    ```
 
 ## Step 2: Get each PAT and paste it into `.mcp.json`
@@ -88,7 +88,7 @@ For each system, copy the PAT and paste it into `.mcp.json` immediately. Then go
 
 5. Copy the PAT.
 
-6. Go back to VS Code. In `.mcp.json`, in the `jira` entry, replace `<your Jira personal access token>` with the PAT. Keep `Token ` in front of it.
+6. Go back to VS Code. In `.mcp.json`, in the `jira` entry, replace `<your Jira personal access token>` with the PAT. Keep `Bearer ` in front of it.
 
 ### 2c. Confluence
 
@@ -100,7 +100,7 @@ For each system, copy the PAT and paste it into `.mcp.json` immediately. Then go
 
 4. Type the name and the expiry, then click **Create**.
 5. Copy the PAT.
-6. Go back to VS Code. In `.mcp.json`, in the `confluence` entry, replace `<your Confluence personal access token>` with the PAT. Keep `Token ` in front of it.
+6. Go back to VS Code. In `.mcp.json`, in the `confluence` entry, replace `<your Confluence personal access token>` with the PAT. Keep `Bearer ` in front of it.
 
 A Jira PAT does not work for Confluence, and the opposite. You must have the two PATs. The Confluence page and dialog are the same as in the screenshots of 2b.
 
@@ -146,7 +146,7 @@ VS Code saves `.mcp.json` automatically.
 
 Tell Claude "done". Do not tell Claude a PAT.
 
-**Claude:** ask the learner to answer yes or no to each of these questions. Did each placeholder go, with its `<>`? Is `Token ` or `Bearer ` still in front of each PAT? Do not open the file to examine it.
+**Claude:** ask the learner to answer yes or no to each of these questions. Did each placeholder go, with its `<>`? Is `Bearer ` still in front of each PAT? Do not open the file to examine it.
 
 ## Step 3: Restart and connect
 
@@ -194,7 +194,7 @@ The test task does the same tests again.
 | Claude cannot find `lesson-1-mcp-setup-guide.md` | The file is not in `becomeainative-os/lesson-1/`, or it has a different name | Move the file to `lesson-1` and make sure that the name is correct. Then give the file name again in your request |
 | `/mcp` does not show `jira`, `confluence`, `gitlab` or `knowledge-base` | `.mcp.json` is not in the root of `becomeainative-os` (for example, it is in a subfolder). Or it has a different name. Or you did not restart VS Code after you changed the file | Move the file to the root and make sure that the name is correct. Then quit VS Code fully and start it again |
 | The servers showed one time, then they went away | You refused the question about the project servers | Open `/mcp` and enable the servers of the project again |
-| `jira`, `confluence`, `gitlab`, `knowledge-base` or `slack` shows **Failed** or "401" | The PAT is not there, it is incorrect or it expired. Or you did not restart VS Code | Examine each PAT in the editor yourself. The PAT must be complete, with no extra spaces and no `<>`. `Token ` or `Bearer ` must be in front of it, in the correct entry. Then quit VS Code fully and start it again |
+| `jira`, `confluence`, `gitlab`, `knowledge-base` or `slack` shows **Failed** or "401" | The PAT is not there, it is incorrect or it expired. Or you did not restart VS Code | Examine each PAT in the editor yourself. The PAT must be complete, with no extra spaces and no `<>`. `Bearer ` must be in front of it. Then quit VS Code fully and start it again |
 | Claude gets the error 403 from a server | You made the PAT with the incorrect account or for the incorrect system | Sign in with your sandbox account in a private window. Revoke the PAT, make a new PAT and replace the old PAT |
 | GitLab calls fail with "insufficient scope" | The PAT does not have a scope that the server needs | Make a new PAT with the scopes in Step 2d |
 | Nothing connects on the corporate network | A proxy or VPN blocks the addresses of the servers | Try one time on a different network to make sure. Then ask IT to permit `*.becomeainative.io` and `mcp.slack.com` |
