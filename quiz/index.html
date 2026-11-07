@@ -389,26 +389,45 @@ const PARTS = {
   lukas: [() => BOLT('#e5322d'), () => BOLT('#f6e94a'), () => icon('fire', null, '#e5322d'), SHEET, () => TXT('#general', '#e5322d', 'IBM Plex Mono')],
 };
 const calm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-function spawn(id, x, y, opt){
-  const el = document.createElement('div'), f = PARTS[id], sz = opt.size || (18 + Math.random()*22);
+const MODE = {henk:'flutter', sofia:'side', oksana:'twinkle', kwame:'rise', lukas:'storm'};
+function spawn(id, opt){
+  const el = document.createElement('div'), f = PARTS[id], sz = (opt.big ? 26 : 20) + Math.random()*20;
   el.className = 'pt'; el.innerHTML = f[Math.floor(Math.random()*f.length)]();
+  const W = innerWidth, H = innerHeight, m = MODE[id];
+  let x, y, kf, dur;
+  const sway = (n, amp) => Array.from({length:n+1}, (_,i) => i);
+  if(m==='flutter'){ // paper falls from the top and rocks side to side
+    x = Math.random()*W; y = -60; dur = 5200 + Math.random()*2600;
+    const amp = 40 + Math.random()*50;
+    kf = [0,1,2,3,4].map(i => ({transform:`translate(${(i%2?amp:-amp)*(i?1:0)}px,${(H+120)*i/4}px) rotate(${(i%2?25:-25)*(i?1:0)}deg)`, opacity: i===4?.8:1}));
+  } else if(m==='side'){ // ctrl+C / ctrl+V fly across from the left
+    x = -120; y = 40 + Math.random()*(H-120); dur = 3800 + Math.random()*2200;
+    const arc = (Math.random()-.5)*160;
+    kf = [{transform:'translate(0,0) rotate(-8deg)'},{transform:`translate(${(W+240)/2}px,${arc}px) rotate(6deg)`},{transform:`translate(${W+240}px,${arc*.3}px) rotate(-4deg)`}];
+  } else if(m==='twinkle'){ // stars drift down slowly and pulse
+    x = Math.random()*W; y = -50; dur = 6000 + Math.random()*3000;
+    const dx = (Math.random()-.5)*160;
+    kf = [0,1,2,3,4,5].map(i => ({transform:`translate(${dx*i/5}px,${(H+100)*i/5}px) rotate(${i*40}deg) scale(${i%2?1.35:.8})`, opacity: i%2?1:.55}));
+  } else if(m==='rise'){ // ticks and notes float up from the bottom
+    x = Math.random()*W; y = H + 30; dur = 5000 + Math.random()*2500;
+    const amp = 20 + Math.random()*30;
+    kf = [0,1,2,3,4].map(i => ({transform:`translate(${(i%2?amp:-amp)*(i?1:0)}px,${-(H+120)*i/4}px) scale(${1+i*.08})`, opacity: i===4?0:1}));
+  } else { // storm: fast diagonal from the right, spinning
+    x = W + 40; y = -40 + Math.random()*H*.7; dur = 2600 + Math.random()*1600;
+    kf = [{transform:'translate(0,0) rotate(0)'},{transform:`translate(${-W*.5}px,${H*.35+Math.random()*120}px) rotate(${-360}deg)`},{transform:`translate(${-W-160}px,${H*.6+Math.random()*200}px) rotate(${-720}deg)`, opacity:.8}];
+  }
   el.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;font-size:${sz*0.9}px`;
   $('#fx').appendChild(el);
-  const dx = (Math.random()-.5) * (opt.spread||200), dy = opt.fall || (innerHeight - y + 60), r = (Math.random()-.5)*540;
-  const kf = opt.burst
-    ? [{transform:'translate(0,0) rotate(0)', opacity:1}, {transform:`translate(${dx*.6}px,${-60-Math.random()*90}px) rotate(${r/2}deg)`, opacity:1, offset:.4}, {transform:`translate(${dx}px,${60+Math.random()*80}px) rotate(${r}deg)`, opacity:0}]
-    : [{transform:'translate(0,0) rotate(0)', opacity:1}, {transform:`translate(${dx}px,${dy}px) rotate(${r}deg)`, opacity:.9}];
-  const a = el.animate(kf, {duration: opt.dur || (2600 + Math.random()*2200), delay: opt.delay||0, easing: opt.burst ? 'cubic-bezier(.2,.7,.4,1)' : 'cubic-bezier(.3,0,.7,1)', fill:'both'});
+  const a = el.animate(kf, {duration:dur, delay:opt.delay||0, easing: m==='storm' ? 'cubic-bezier(.4,0,.8,1)' : 'linear', fill:'both'});
   a.onfinish = () => el.remove();
 }
-function burst(id, node){
+function burst(id){
   if(calm()) return;
-  const r = node.getBoundingClientRect();
-  for(let i=0;i<9;i++) spawn(id, r.left + r.width*(.2+Math.random()*.6), r.top + r.height*.4, {burst:true, dur:1100+Math.random()*400, spread:260, size:16+Math.random()*14});
+  for(let i=0;i<22;i++) spawn(id, {delay: Math.random()*1600});
 }
 function rain(id){
   if(calm()) return;
-  for(let i=0;i<70;i++) spawn(id, Math.random()*innerWidth, -60 - Math.random()*120, {delay: Math.random()*3500});
+  for(let i=0;i<80;i++) spawn(id, {delay: Math.random()*5000, big:true});
 }
 
 /* ===== Scene sketches (meme panels, 320 x 190) ===== */
@@ -679,7 +698,7 @@ function pick(btn, sc, opts){
     lukas: ['fire','#fff','CHAOS +1', S.chaos>=2 ? "Two agents acted without your approval. Chaos took over your week." : "Your agent acted without your approval. One more, and chaos takes over."],
   }[id];
   r.insertAdjacentHTML('afterend', `<div class="alert ${id}">${icon(AL[0], 24, AL[1])}<b>${AL[2]}</b><span>${AL[3]}</span></div>`);
-  burst(id, btn);
+  burst(id);
   if(id==='lukas'){ const cb = $('#chaosBox'); cb.classList.add('hit'); setTimeout(()=>cb.classList.remove('hit'), 1800); }
   if(id==='lukas') document.querySelectorAll('.desk')[4].classList.add('burn');
   const n = $('#next'); n.hidden = false;
