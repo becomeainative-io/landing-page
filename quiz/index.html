@@ -68,6 +68,13 @@ header{display:flex;justify-content:space-between;align-items:center;gap:12px;ma
 .desk.burn .nick span{background:#e5322d;color:#fff;padding:0 3px}
 .ocard.red.picked{border-color:#e5322d}
 .react.red .say{color:#e5322d}
+.alert{display:flex;gap:12px;align-items:center;margin-top:14px;background:#e5322d;color:#fff;padding:12px 16px;font-size:15px;animation:fade .35s ease}
+.alert b{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.chaos.hit{outline:3px solid #e5322d;outline-offset:-3px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:640px;margin:-6px 0 20px}
+.legend div{border:1px dashed var(--rule2);padding:10px 12px;font-size:14px;color:var(--muted)}
+.legend b{display:block;color:var(--ink);font-size:15px}
+@media (max-width:760px){.legend{grid-template-columns:1fr}}
 .bump{animation:bump .5s ease}
 @keyframes bump{40%{transform:scale(1.18) rotate(-4deg)}}
 
@@ -572,7 +579,8 @@ function intro(){
   show(`<div class="kicker">BAIN-QUIZ · START</div>
     <span class="note hand">→ no AI trivia</span>
     <h1>Five colleagues.<br>One of them is <span class="hl">you</span>.</h1>
-    <p class="lead">One work week, 12 decisions, about 4 minutes. Watch what lands on your desk.</p>
+    <p class="lead">One work week, 12 decisions, about 4 minutes.</p>
+    <div class="legend"><div><b>Your desk</b>Doing it by hand adds paper to your pile.</div><div><b style="color:#e5322d">Chaos meter</b>An agent that acts without your approval moves it into the red.</div></div>
     <div class="field"><label class="label" for="nm">WHAT SHOULD WE CALL YOU?</label><input type="text" id="nm" placeholder="First name" maxlength="40" autocomplete="given-name"></div>
     <div class="field"><label class="label" for="role">YOUR ROLE</label><select id="role"><option value="">Choose your role</option>${ROLES.map(r=>`<option>${r}</option>`).join('')}</select></div>
     <div class="err" id="err"></div>
@@ -620,6 +628,10 @@ function pick(btn, sc, opts){
   const cost = c.pile ? `${pile(c.pile,34)}+${c.pile}` : (id==='lukas' ? '<span style="color:#e5322d;font-weight:500">🔥 CHAOS +1</span>' : 'desk stays clear');
   r.innerHTML = `${figure(id)}<div><div class="who">${c.nick.toUpperCase()}</div><div class="say">${o[4]}</div></div><div class="cost">${cost}</div>`;
   r.classList.add('show'); r.classList.toggle('red', id==='lukas');
+  if(id==='lukas'){
+    r.insertAdjacentHTML('afterend', `<div class="alert"><b>🔥 CHAOS +1</b><span>${S.chaos>=2 ? 'Two agents acted without your approval. Chaos took over your week.' : 'Your agent acted without your approval. One more, and chaos takes over.'}</span></div>`);
+    const cb = $('#chaosBox'); cb.classList.add('hit'); setTimeout(()=>cb.classList.remove('hit'), 1800);
+  }
   if(id==='lukas') document.querySelectorAll('.desk')[4].classList.add('burn');
   const n = $('#next'); n.hidden = false;
   const last = S.i === SCENES.length-1, endOfDay = last || SCENES[S.i+1].day !== sc.day;
