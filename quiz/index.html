@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five colleagues. One of them is you. | Become AI Native</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Live one work week with five colleagues. Every choice moves the clock. Find out which one you are, and get a 4-week AI plan.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Become AI Native">
+<meta property="og:title" content="Five colleagues. One of them is you.">
+<meta property="og:description" content="A 4-minute work-week game for managers. What time do you go home?">
+<meta property="og:url" content="https://becomeainative.io/quiz/">
+<link rel="icon" type="image/svg+xml" href="/shared/favicon.svg?v=2">
+<!-- Google Analytics 4 + cookie consent (gtag.js loads only after Accept) -->
+<link rel="stylesheet" href="/shared/consent.css">
+<script src="/shared/consent.js?v=2"></script>
+<link rel="preload" href="/shared/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/shared/fonts/schibsted-grotesk-latin.woff2) format('woff2')}
+@font-face{font-family:'Caveat';font-style:normal;font-weight:500 700;font-display:swap;src:url(/shared/fonts/caveat-latin.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/shared/fonts/ibm-plex-mono-400-latin.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/shared/fonts/ibm-plex-mono-500-latin.woff2) format('woff2')}
+:root{--paper:#fff;--desk:#f4f5f7;--ink:#111;--muted:#4a4e5a;--struck:#8a8f99;--rule:#dadde3;--rule2:#b5b9c2;--pen:#1a4dff;--marker:#f6e94a;--graphite:#2b2b2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--desk);color:var(--ink);font-family:'Schibsted Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hand{font-family:'Caveat',cursive;font-weight:700;color:var(--pen)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 20px 40px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:6px;text-decoration:none}
+.logo .hand{font-size:26px;display:inline-block;transform:rotate(-6deg)}
+.label{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);letter-spacing:.3px}
+
+.hud{display:grid;grid-template-columns:auto 1fr auto;background:var(--paper);border:1px solid var(--rule);margin-bottom:14px}
+.hud>div{padding:12px 18px}
+.hud>div+div{border-left:1px solid var(--rule)}
+.clock{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:500;letter-spacing:-1px;white-space:nowrap}
+.clock small{font-size:13px;color:var(--muted);display:block;letter-spacing:.3px;font-weight:400}
+.days{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.day{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 10px;border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.day.on{border:2px solid var(--pen);color:var(--ink);font-weight:500}
+.day.done{color:var(--ink);text-decoration:line-through;text-decoration-color:var(--pen);text-decoration-thickness:2px}
+.chaos{min-width:190px}
+.chaos .bar{display:flex;gap:6px;margin-top:6px}
+.chaos .pip{width:46px;height:14px;border:1.5px solid var(--graphite)}
+.chaos .pip.on{background:repeating-linear-gradient(-45deg,var(--graphite) 0 2px,transparent 2px 6px)}
+.chaos.alarm .label{color:var(--ink);font-weight:500}
+
+.office{display:grid;grid-template-columns:repeat(5,1fr);background:var(--paper);border:1px solid var(--rule);margin-bottom:14px}
+.desk{position:relative;padding:8px 6px 10px;text-align:center;border-left:1px solid var(--rule);transition:background .2s}
+.desk:first-child{border-left:0}
+.desk svg{width:100%;max-width:130px;height:auto;display:block;margin:0 auto}
+.desk .nick{font-size:13px;font-weight:700;line-height:1.2;margin-top:2px}
+.desk.active{background:var(--desk)}
+.desk.active .nick span{background:var(--marker);padding:0 3px}
+.desk.active svg{animation:hop .6s ease}
+@keyframes hop{0%,100%{transform:translateY(0)}30%{transform:translateY(-10px) rotate(-3deg)}60%{transform:translateY(0) rotate(2deg)}}
+.desk .bang{position:absolute;top:6px;right:12%;font-size:30px;opacity:0;transform:rotate(-8deg)}
+.desk.active .bang{opacity:1}
+
+.card{background:var(--paper);border:1px solid var(--rule);padding:30px 34px 28px;min-height:360px;position:relative}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:10px}
+h1{font-size:46px;line-height:1.05;letter-spacing:-1.5px;font-weight:800;margin-bottom:14px}
+h2{font-size:30px;line-height:1.15;letter-spacing:-.8px;font-weight:800;margin-bottom:18px;max-width:780px}
+h3{font-size:21px;letter-spacing:-.4px;font-weight:800;margin:26px 0 10px}
+.lead{font-size:19px;color:var(--muted);max-width:640px;margin-bottom:22px}
+.hl{background:var(--marker);padding:0 4px}
+.opts{display:flex;flex-direction:column;gap:8px;max-width:820px}
+.opt{text-align:left;padding:13px 16px 13px 18px;border:1px solid var(--rule);background:var(--paper);font-size:17px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .k{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);padding-top:3px;flex:none;width:16px}
+.opt:disabled{cursor:default}
+.opt.faded{color:var(--struck)}
+.opt.picked{border:2px solid var(--pen);padding:12px 15px 12px 17px}
+.opt.picked .k{color:var(--pen)}
+.react{display:none;margin-top:18px;max-width:820px;border-top:1px solid var(--rule);padding-top:14px;align-items:center;gap:14px}
+.react.show{display:flex}
+.react svg{width:64px;height:auto;flex:none}
+.react .who{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted)}
+.react .say{font-family:'Caveat',cursive;font-weight:700;color:var(--pen);font-size:28px;line-height:1.1;transform:rotate(-1.5deg);transform-origin:left}
+.react .cost{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.row{display:flex;gap:12px;align-items:center;margin-top:22px;flex-wrap:wrap}
+.btn{background:var(--ink);color:#fff;padding:13px 22px;font-weight:700;font-size:17px;border:2px solid var(--ink);text-decoration:none;display:inline-block}
+.btn:hover{background:var(--pen);border-color:var(--pen)}
+.btn.yellow{background:var(--marker);color:var(--ink);border-color:var(--marker)}
+.btn.yellow:hover{border-color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:transparent;color:var(--pen);border-color:var(--pen)}
+.btn[hidden]{display:none}
+.btn:disabled{opacity:.35;cursor:default}
+input[type=text],input[type=email],input[type=url],select{font:inherit;font-size:18px;padding:11px 13px;border:1px solid var(--rule2);width:100%;max-width:420px;outline:none;background:#fff;border-radius:0;color:var(--ink)}
+input::placeholder{color:var(--struck)}
+input:focus,select:focus{border-color:var(--pen)}
+.field{margin-bottom:16px}
+.field>label,.field>.label{display:block;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;max-width:820px}
+.chip{border:1px solid var(--rule);padding:9px 14px;font-size:16px;background:#fff}
+.chip:hover{border-color:var(--ink)}
+.chip.on{border:2px solid var(--pen);padding:8px 13px;font-weight:700}
+.q{margin-bottom:22px;max-width:820px}
+.q>p{font-weight:700;margin-bottom:8px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;max-width:620px;margin:6px 0 4px}
+.check input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--pen)}
+.err{color:#b00020;font-size:14px;margin-top:6px;min-height:18px}
+.note{position:absolute;right:34px;top:26px;font-size:28px;transform:rotate(-5deg);max-width:300px;text-align:right;line-height:1.05}
+
+.guess{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:920px}
+.gcard{border:1px solid var(--rule);padding:10px 8px 12px;text-align:center;background:var(--paper)}
+.gcard:hover{border-color:var(--ink)}
+.gcard svg{width:100%;max-width:110px;height:auto}
+.gcard b{display:block;font-size:14px;line-height:1.2}
+.gcard i{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.25}
+
+.ledger{max-width:560px;border-top:1px solid var(--rule);margin:6px 0 10px}
+.ledger div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.ledger div span:last-child{font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.ledger .tot{font-weight:800;font-size:20px;border-bottom:2px solid var(--ink)}
+
+.res{display:grid;grid-template-columns:240px 1fr;gap:30px;align-items:start}
+.res .fig{border:1px solid var(--rule);background:var(--desk);padding:14px;transform:rotate(-1.5deg);position:sticky;top:16px}
+.res .fig svg{width:100%;height:auto}
+.quote{font-family:'Caveat',cursive;font-weight:700;color:var(--pen);font-size:30px;line-height:1.1;margin:-4px 0 14px;transform:rotate(-1deg);transform-origin:left}
+.week{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--rule);margin:14px 0 6px}
+.week>div{padding:10px 12px}
+.week>div+div{border-left:1px solid var(--rule)}
+.week b{display:block;font-size:24px;letter-spacing:-.6px;white-space:nowrap}
+.week span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+.area{margin:10px 0}
+.area .top{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.area .top span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:400}
+.area .track{height:10px;border:1px solid var(--graphite);margin-top:4px;position:relative}
+.area .fill{position:absolute;inset:0 auto 0 0;background:var(--ink);transition:width .8s ease}
+.tip{border:1px dashed var(--rule2);padding:12px 14px;margin-top:8px;font-size:15px}
+.tip b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;color:var(--muted);display:block;margin-bottom:2px}
+.plan{border-top:1px solid var(--rule)}
+.plan>div{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.plan .wk{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--pen);padding-top:3px}
+.plan b{display:block}
+.plan p{font-size:15px;color:var(--muted)}
+.plan .done{font-size:15px;color:var(--ink);margin-top:2px}
+.next{margin-top:24px;border:2px solid var(--ink);padding:18px 20px;background:var(--desk)}
+.next ul{margin:8px 0 0 18px;font-size:15px}
+.next li{margin:3px 0}
+.extra{border-top:1px solid var(--rule2);margin-top:12px;padding-top:10px;font-size:15px}
+footer{margin-top:14px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade,.desk.active svg{animation:none}}
+
+@media (max-width:760px){
+  .wrap{padding:12px 10px 30px}
+  .hud{grid-template-columns:1fr 1fr}
+  .hud .days{grid-column:1/-1;border-left:0!important;border-top:1px solid var(--rule)}
+  .hud>div{padding:10px 12px}
+  .clock{font-size:24px}
+  .chaos{min-width:0}
+  .chaos .pip{width:32px}
+  .desk .nick{font-size:11px}
+  .card{padding:22px 18px;min-height:0}
+  h1{font-size:34px}
+  h2{font-size:23px}
+  .note{position:static;text-align:left;margin:-6px 0 14px;font-size:24px;display:block}
+  .guess{grid-template-columns:repeat(2,1fr)}
+  .res{grid-template-columns:1fr}
+  .res .fig{max-width:200px;position:static}
+  .week{grid-template-columns:repeat(3,1fr)}
+  .week>div:nth-child(4){border-left:0}
+  .week>div:nth-child(n+4){border-top:1px solid var(--rule)}
+  .react .cost{display:none}
+  .plan>div{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="pencil" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">become <span class="hand">ai native</span></a>
+    <div class="label">BAIN-QUIZ · Five colleagues, one week</div>
+  </header>
+
+  <div class="hud" id="hud">
+    <div><div class="clock" id="clock"><small>CLOCK</small>MON 09:00</div></div>
+    <div class="days" id="days"></div>
+    <div class="chaos" id="chaosBox"><div class="label">CHAOS METER</div><div class="bar"><div class="pip"></div><div class="pip"></div></div></div>
+  </div>
+
+  <div class="office" id="office" aria-hidden="true"></div>
+
+  <main class="card" id="card" aria-live="polite"></main>
+
+  <footer>
+    <span class="label">becomeainative.io · <a href="/privacy/">Privacy</a></span>
+    <span class="label">No AI trivia, just your real work week</span>
+  </footer>
+</div>
+
+<script>
+/* ===== Settings =====
+   WEBHOOK_URL: the n8n Webhook node (POST, JSON). Leave empty and nothing is sent: the result still shows.
+   In n8n, set the webhook "Allowed Origins (CORS)" to https://becomeainative.io */
+const WEBHOOK_URL = "";
+const APPLY_URL = "https://form.becomeainative.io/apply";
+
+const CAST = {
+  henk:   {slug:'analog-legend',    nick:'The Analog Legend',     line:"I don't need AI. I have Excel and a good memory.", mins:120, pts:1, jump:'Worker → Operator'},
+  sofia:  {slug:'copy-paste-artist',nick:'The Copy-Paste Artist', line:"Just one more prompt and it's perfect.",           mins:70,  pts:2, jump:'From Operator to Manager'},
+  oksana: {slug:'workflow-wizard',  nick:'The Workflow Wizard',   line:"I automated our standup. Ask me how.",             mins:35,  pts:3, jump:'From Operator to Manager across systems'},
+  kwame:  {slug:'conductor',        nick:'The Conductor',         line:"My agents handle it. I decide what matters.",      mins:10,  pts:4, jump:'Manager'},
+  lukas:  {slug:'chaos-automator',  nick:'The Chaos Automator',   line:"It was supposed to email one client.",             mins:8,   pts:3, jump:'Keep the speed, add the gates'},
+};
+const ORDER = ['henk','sofia','oksana','kwame','lukas'];
+const BASE = 390; // meetings, lunch and the rest of the day, in minutes
+
+function figure(id){
+  const g = '#2b2b2b', p = '#1a4dff';
+  const head = `<path d="M60 18 a12 12 0 1 1 -1 0.2" /><path d="M61.5 17.6 a12.4 12 0 1 1 -2 0.4" stroke-width="1.2" opacity=".55"/>`;
+  const body = `<path d="M60 42 L60 94"/>`;
+  const desk = `<path d="M10 95 L110 95"/><path d="M11 96.5 L109 96"/><path d="M18 95 L18 132"/><path d="M102 95 L102 132"/>`;
+  let arms='', props='', face='';
+  if(id==='henk'){ // paper stack + mug
+    arms = `<path d="M60 54 L42 74 L36 93"/><path d="M60 54 L80 72 L86 80"/>`;
+    props = `<path d="M76 93 L102 93"/><path d="M77 88 L101 88.5"/><path d="M76 83 L100 82.5"/><path d="M78 78 L102 78.5"/><path d="M77 73 L99 72.5"/><path d="M79 68 L101 68.5"/>
+             <path d="M22 80 L22 93 L34 93 L34 80 Z"/><path d="M34 84 q6 0 6 4 q0 3 -6 3"/><path d="M26 76 q2 -4 0 -7"/><path d="M30 76 q2 -4 0 -7"/>`;
+    face = `<path d="M55 28 L57 28"/><path d="M63 28 L65 28"/><path d="M55 35 L65 35"/>`;
+  }
+  if(id==='sofia'){ // laptop + copy/paste
+    arms = `<path d="M60 54 L72 76 L80 90"/><path d="M60 54 L50 76 L72 91"/>`;
+    props = `<path d="M70 93 L104 93"/><path d="M74 92 L80 66 L106 66 L100 92"/>
+             <text x="2" y="44" font-family="Caveat" font-weight="700" font-size="16" fill="${p}" stroke="none" transform="rotate(-10 20 40)">ctrl+V</text>`;
+    face = `<circle cx="56" cy="28" r="1.4" fill="${g}"/><circle cx="64" cy="28" r="1.4" fill="${g}"/><path d="M55 34 q5 4 10 0"/>`;
+  }
+  if(id==='oksana'){ // wand + gear
+    arms = `<path d="M60 54 L80 44 L96 30"/><path d="M60 54 L44 72 L40 92"/>`;
+    props = `<path d="M100 14 L102 21 L109 22 L103 26 L105 33 L100 29 L94 32 L96 25 L91 21 L98 20 Z" stroke="${p}" fill="none"/>
+             <circle cx="28" cy="84" r="7"/><path d="M28 74 L28 77 M28 91 L28 94 M18 84 L21 84 M35 84 L38 84 M21 77 L23 79 M33 89 L35 91 M35 77 L33 79 M21 91 L23 89"/>`;
+    face = `<path d="M54 28 q2 -2 4 0"/><path d="M62 28 q2 -2 4 0"/><path d="M55 34 q5 5 10 0"/>`;
+  }
+  if(id==='kwame'){ // baton + agent boxes with ticks
+    arms = `<path d="M60 54 L78 42 L86 30"/><path d="M60 54 L46 70 L40 90"/><path d="M86 30 L100 12"/>`;
+    props = `<rect x="10" y="12" width="16" height="12"/><path d="M13 18 l3 3 l6 -6" stroke="${p}"/>
+             <rect x="10" y="32" width="16" height="12"/><path d="M13 38 l3 3 l6 -6" stroke="${p}"/>
+             <rect x="10" y="52" width="16" height="12"/><path d="M13 58 l3 3 l6 -6" stroke="${p}"/>`;
+    face = `<circle cx="56" cy="28" r="1.4" fill="${g}"/><circle cx="64" cy="28" r="1.4" fill="${g}"/><path d="M56 35 L64 34"/>`;
+  }
+  if(id==='lukas'){ // arms up, lightning, flying papers
+    arms = `<path d="M60 54 L44 38 L38 22"/><path d="M60 54 L76 38 L82 22"/>`;
+    props = `<path d="M96 40 L88 56 L97 56 L89 74" stroke="${p}"/>
+             <path d="M12 40 l14 -4 l3 11 l-14 4 z"/><path d="M90 84 l13 3 l-2 9" /><path d="M20 66 l11 -6 l5 9 l-11 6 z"/>`;
+    face = `<circle cx="56" cy="28" r="2" fill="none"/><circle cx="64" cy="28" r="2" fill="none"/><ellipse cx="60" cy="35.5" rx="3" ry="2.2"/>`;
+  }
+  return `<svg viewBox="0 0 120 136" fill="none" stroke="${g}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${CAST[id].nick}">
+    <g filter="url(#pencil)">${props}${head}${face}${body}${arms}${desk}</g></svg>`;
+}
+
+
+
+// ===== Scenes: [character, answer, reaction] =====
+const SCENES = [
+ {day:0, area:'sys', q:"Monday, 9:00. 60 unread Slack messages, 12 emails, 3 new Jira tickets.", opts:[
+   ['henk',"Mark all as read. If it's urgent, they'll call.","If it's urgent, they'll call. Nobody has called since 2019."],
+   ['sofia',"Skim, then paste the long threads into ChatGPT for a summary.","Summary of 60 threads: “people are discussing things.”"],
+   ['oksana',"My saved “Monday triage” prompt with the threads pasted in. 15 minutes.","15 minutes. I timed it. Twice."],
+   ['kwame',"My agent already read Slack, Gmail and Jira and left me a brief: 4 things need me, 56 don't.","4 need me. The other 56 can wait."],
+   ['lukas',"My agent replied to all 60. I'm scared to check.","In my defence, everyone got a reply."]]},
+ {day:0, area:'ctx', q:"How does AI know who you are and how you work?", opts:[
+   ['henk',"It doesn't, and I'd like to keep it that way.","My memory is my CLAUDE.md."],
+   ['sofia',"I paste my “here's who I am” prompt at the start of every chat.","I've typed “Hi, I'm a PM” 400 times."],
+   ['oksana',"A custom GPT or Claude Project with my files and instructions.","My Project knows me better than my manager does."],
+   ['kwame',"A CLAUDE.md under 200 lines (who I am, how I write, never-do rules), and skills for procedures. The third time I explain something, it becomes a skill.","The third time, it becomes a skill."]]},
+ {day:1, area:'sys', q:"A key client writes: “When will Feature X be available? We were told this quarter.”", opts:[
+   ['henk',"I ask the PM, wait, read the roadmap, ask again, then reply.","Three days later: “Feature X is coming.”"],
+   ['sofia',"ChatGPT writes a polite “I'll check and get back to you by Friday.”","Friday is a promise for future me."],
+   ['oksana',"I check Jira and Confluence myself, then AI drafts the reply.","Two tabs, one answer, 40 minutes."],
+   ['kwame',"My agent checks Gmail, the CRM, Jira, Confluence and Slack, shows me where they disagree, and drafts the answer. I decide.","Jira and the CRM disagree. I know before the client does."],
+   ['lukas',"My agent already answered “this quarter”. It sounded very sure.","Jira moved it to next quarter 10 days ago. Small detail."]]},
+ {day:1, area:'ctx', q:"You give AI a task. Your brief looks like…", opts:[
+   ['henk',"I don't give AI tasks.","I don't brief. I do."],
+   ['sofia',"“Make this better.”","It did. Better at what, nobody knows."],
+   ['oksana',"A few lines of context and an example of what I want.","One example beats 100 words of prompt."],
+   ['kwame',"Goal, inputs, output, rules: cite sources, never invent, write “Not specified” when something is missing.","Goal, inputs, output, rules. Done."]]},
+ {day:2, area:'dlv', q:"You need a spec for a new feature.", opts:[
+   ['henk',"A blank page and a strong coffee.","Coffee number three. The page is still blank."],
+   ['sofia',"“Write me a PRD for…”, then 2 hours fixing it.","The PRD was 14 pages. I needed 2."],
+   ['oksana',"My own template, filled in by AI from my notes and research.","My template has a template."],
+   ['kwame',"I write the intent with a success metric. The agent interviews me one question at a time into a spec with yes/no acceptance criteria, then drafts the plan.","Yes/no criteria. No “fast”, no “intuitive”."]]},
+ {day:2, area:'dlv', q:"The plan is approved. Now 15 tickets need to exist in Jira.", opts:[
+   ['henk',"I type them one by one. There goes Friday.","Ticket 9 of 15. Wednesday is gone too."],
+   ['sofia',"ChatGPT writes them, and I paste them into Jira one by one.","Copy, paste, copy, paste. Fifteen times."],
+   ['oksana',"AI makes a CSV, I import it into Jira and fix the fields.","The import worked on the third try."],
+   ['kwame',"The agent shows me the list first, creates them one at a time with acceptance criteria and spec links, then reads every field back.","15 created. 15 read back."],
+   ['lukas',"The agent created 150. I asked for 15.","The backlog has never looked so full."]]},
+ {day:3, area:'rep', q:"Jira says 42 tickets are done. Your spreadsheet says 37. The dashboard says 45.", opts:[
+   ['henk',"I use the number leadership saw last time.","Nobody asked which one. Perfect."],
+   ['sofia',"I paste all three into ChatGPT and ask which one is right.","ChatGPT said 42. Very confidently."],
+   ['oksana',"I export them to CSV and run my saved comparison prompt.","Saved prompt, saved afternoon."],
+   ['kwame',"The agent pulls all three, a script compares them row by row, and I check the tickets that differ.","5 tickets differ. Now I know which."],
+   ['lukas',"I asked AI to make them match. They match now.","Technically, all three are now wrong in the same way."]]},
+ {day:3, area:'auto', q:"A 1-hour stakeholder meeting just ended. Minutes and action items?", opts:[
+   ['henk',"In my notebook. Somewhere around page 40.","Page 40 is very well organised, thank you."],
+   ['sofia',"I paste the transcript into ChatGPT and copy the action items into an email.","Apparently I own all 12 action items. I spoke last."],
+   ['oksana',"An AI notetaker writes them, and I copy the action items into Jira myself.","The notetaker writes. I still copy."],
+   ['kwame',"The transcript becomes a decision log. Owners are checked against the team list, unclear ones stay TODO, and I approve the ticket candidates.","Unclear owners stay TODO. No guessing."]]},
+ {day:3, area:'auto', q:"How many of your recurring tasks run without you?", opts:[
+   ['henk',"None. I am the automation.","I am the automation. And the backup."],
+   ['sofia',"A few reminders someone else set up.","Someone set them up in 2022. Nobody knows who."],
+   ['oksana',"A few I built myself in Zapier or n8n. I'm very proud of them.","Ask me how. Please. Anyone."],
+   ['kwame',"Every recurring one runs on a schedule: dry run by default, an approval step before anything is posted, and an owner in the registry.","Dry run first. Always."],
+   ['lukas',"All of them. Nobody approves anything. Something posted in #general at 3 am.","In my defence, #general was very quiet before."]]},
+ {day:4, area:'rep', q:"Friday. The weekly status update for leadership.", opts:[
+   ['henk',"2 hours rewriting everyone's updates, so it looks like I did a lot.","It looks busy. It was busy."],
+   ['sofia',"ChatGPT turns my bullet points into “key highlights”. Leadership loves it. Nobody reads it.","“Key highlights” is doing a lot of work there."],
+   ['oksana',"AI drafts it from the updates I collect. I delete the bragging.","40% of it was bragging."],
+   ['kwame',"Code pulls the numbers from Jira, the agent writes only from those numbers with a link on every key, and I add the one thing it can't know: what I think.","Every number has a link. Nobody argues."]]},
+ {day:4, area:'team', q:"Does your team use AI?", opts:[
+   ['henk',"Not allowed. (They use it anyway.)","They use it anyway. I pretend not to know."],
+   ['sofia',"Yes. They just don't tell me.","They don't tell me. I don't tell them."],
+   ['oksana',"Yes, and we share prompts and tips in a channel.","Our prompt channel has 400 messages."],
+   ['kwame',"Yes: shared skills, one knowledge base, and the rule “ask the agent before you ask a person”.","Ask the agent before you ask a person."]]},
+ {day:4, area:'team', q:"Your CEO announces: “We're AI-first by Q1.”", opts:[
+   ['henk',"I nod and wait for it to pass, like the metaverse.","Like the metaverse."],
+   ['sofia',"I buy everyone a ChatGPT licence. Done.","Licences: bought. Strategy: also done?"],
+   ['oksana',"I share my best workflow at the next team meeting.","Slide 1: my workflow. Slide 2: also my workflow."],
+   ['kwame',"I propose one pilot: one team, one measure, 90 days.","One team, one measure, 90 days."],
+   ['lukas',"I let an agent write the AI strategy. It's 40 pages. Nobody has read it.","40 pages. Nobody has read it. Me neither."]]},
+];
+const BONUS = ["Me, at 1 am, in pain.","ChatGPT, and everyone could tell. (“Let's delve in 🚀”)","AI drafted it. The opinions are mine.","My agent posts. I just show up for the comments.","I don't post. I lurk and I judge."];
+const DAYS = ['MON','TUE','WED','THU','FRI'];
+const DAYNAME = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+const AREAS = [
+ ['ctx','Context','02, 09',"Write a CLAUDE.md or custom instructions in six sections: who I am, folders, how I write, data rules, never do, definitions. Done when a new chat knows your role without you pasting it."],
+ ['sys','Connected systems','03, 04',"Connect one tool you open every day through its official connector, reads only. Ask “What changed this week? Give links.” Done when every link opens the right item."],
+ ['dlv','Delivery','11, 12',"Before your next spec, write the intent: the problem with no solution words, a success metric with a baseline and a target, and 2 non-goals. Write each acceptance criterion as one yes/no check."],
+ ['rep','Reporting','15, 16',"Code calculates the numbers, AI writes only from them, and you approve. Show lists against totals (“4 of 11 blocked”) and give every key a link."],
+ ['auto','Automation','07, 08',"The third time you explain a task, make it a skill. When it must run on a schedule, move it to n8n with dry run on by default."],
+ ['team','Team','04, 17',"Ask your AI 5 real questions your team asked this month. Every one it can't answer with a source is a knowledge gap: give it an owner and a date."],
+];
+const GUARDRAILS = ['GUARDRAILS · LESSONS 13, 15',"Gate by blast radius: shared systems get a dry run, approval and read-back, and nothing is sent or published without you. A “Done” message is not evidence."];
+const PLANS = {
+ henk:{intro:"You do each step yourself. You read Slack, search Jira and Confluence, and keep the context in your head. It works, but you can do only one task at a time.", weeks:[
+  ["One task, five times (Lesson 06)","Ask AI for a decision log from your next 5 meeting transcripts. Use a 4-part brief: goal, input, output, rules (quote the line, never invent, unclear owner = TODO).","5 logs, with every owner checked against the transcript."],
+  ["The weekly report","Paste your team's updates with last week's report as the example. Ask for lists against totals (“4 of 11 blocked”). Save the brief.","it takes less time than last week and every number matches the updates."],
+  ["An AI journal (Lesson 06)","One line per AI task: what you asked, what you checked, what was wrong, and a score from 1 to 5 against doing it by hand.","10 lines, failures included."],
+  ["Three buckets (Lessons 01, 05)","Sort 15 tasks from last week. A: AI does it and a wrong result is cheap to spot. B: AI drafts and you decide. C: you own it.","every task has a bucket and you know your 5 biggest A tasks."]]},
+ sofia:{intro:"You use AI every day, but you're the one moving data between the chat and your tools. AI made your writing faster. The searching, the handoffs and the waiting are still yours.", weeks:[
+  ["A workspace that knows you (Lessons 01, 02)","Install VS Code and Claude Code. Write a CLAUDE.md under 200 lines: who I am, folders, how I write, data rules, never do, definitions.","a new session correctly answers “What is my role, and what must you never do?”"],
+  ["Your first connection (Lesson 03)","Connect one system you open every day through its official connector, with reads only. Ask: “Which of my tickets changed this week? Give links.”","every link opens the right ticket and the count matches Jira."],
+  ["Your first skill (Lesson 07)","Turn your weekly status update into a skill: a link on every key, numbers only from the tools.","it runs on next week's data without you explaining anything again."],
+  ["The loop (Lesson 06)","For every report: brief, run, check, fix, log. Check 3 numbers against the source each time.","4 runs are logged, with what was wrong in each."]]},
+ oksana:{intro:"You have saved prompts and at least one automation you're proud of. But most of your workflows still start with you pasting something, and only you know how they work.", weeks:[
+  ["A tool access map (Lesson 03)","For your top 3 workflows, list every system they read and write, and mark each copy-paste step.","every copy-paste step has a system name and “connected” or “not connected”."],
+  ["Move one workflow to an agent (Lessons 03, 12)","Connect the missing systems. Dry-run table first, you approve, one write at a time, every write read back.","one full run with no copy-paste."],
+  ["Put it on a schedule (Lesson 08)","Move it to n8n with dry_run on, an approval step, a duplicate key, 3 retries and an error route. Add a registry row.","two scheduled runs, one stopped duplicate and one tested failure notice."],
+  ["Hand it to your team (Lessons 07, 04)","Package it as a skill with one owner. Measure the minutes per run before and after.","a colleague ran it without your help."]]},
+ kwame:{intro:"Your agents read your systems, and you brief, approve and check. You already work the way the intensive ends. You don't need a course from us.", weeks:[
+  ["Measure your agent (Lesson 15)","Build a golden set of 20 real cases: about 12 typical, 5 edge cases, 3 must-pass. Set the pass threshold before the run.","you have a pass rate and you've read every failure."],
+  ["Gates by blast radius (Lesson 13)","Reads: no gate. Shared systems: dry run, approve, read back. Send or publish: approve each item. Delete or permissions: never by an agent.","every workflow has its gate written down."],
+  ["Cost (Lesson 13)","Runs × (1 + retry rate) × tokens × price, plus services, plus review minutes. Human review is usually the largest line.","every automation has a budget owner."],
+  ["Take your team with you (Lesson 17)","One measurable pilot: one team, one measure, 90 days. Keep measured gains separate from estimates.","leadership has a one-page memo."]]},
+ lukas:{intro:"You automate fast and without fear, and some things now run that nobody approves and nobody can explain. In Lesson 01, Martin's agent did nothing outside his systems without his approval. Yours does.", weeks:[
+  ["A registry (Lesson 08)","List every agent and automation that actually runs: owner, trigger, systems, destination, how to pause. Pause every one without an owner.","nothing runs that isn't on the list."],
+  ["Gates by blast radius (Lesson 16)","Team channels get a dry run. Records other people use, or anything external: approve the list, one write at a time, read back.","a full week with no surprise messages."],
+  ["The model decides, code calculates (Lesson 15)","Numbers, dates and IDs come from code. Run one classification task 3 times and compare.","you know how often your agent disagrees with itself."],
+  ["Secrets and prompt injection (Lesson 13)","One scoped token per person per system, never pasted. Test one document with a planted instruction.","no token is left in your files and the agent ignores the planted instruction."]]},
+};
+const OUTCOMES = {
+ sofia:["Run your daily work through an agent","Connect it to every system you use, through MCP","Package your know-how as skills"],
+ oksana:["Connect your agent to every system, through MCP","Package your know-how as skills","Automate with n8n, Python and skills, with approval gates"],
+ lukas:["Get reliable results you can check, with evals","Automate safely, with approval gates","Lesson 13: security and cost"],
+};
+const ROLES = ["Product Manager","Product Owner","Project / Delivery Manager","Program Manager","Operations Manager","Customer Success Manager","Business Analyst","Head / Director / VP","Founder","Other"];
+const TOOLS = ["Slack","Teams","Jira","Linear","Confluence","Notion","Gmail","Outlook","Google Drive","HubSpot","Salesforce","GitLab / GitHub"];
+const FIT = [
+ ['years',"Years in a manager role",["Under 18 months","18 months to 3 years","3–5","5–10","10+"]],
+ ['ai_allowed',"Does your company support you with AI?",["Yes, with time, tools and training","Tools, but no training","It's allowed, but I'm on my own","It's restricted","It's not allowed","I'm between roles or freelance"]],
+ ['keep_up',"How do you keep up with AI?",["I don't, really","Newsletters and LinkedIn","Courses","Colleagues","I try new tools every week","Other"]],
+ ['manages',"Do other managers report to you?",["Yes","No"]],
+ ['time',"Would you trade 30 hours this month for hours back every week after it?",["I'm in","I'll make it work","Not this month"]],
+];
+
+// ===== State =====
+const params = new URLSearchParams(location.search);
+let S;
+function reset(){ S = {name:'', role:'', guess:null, i:0, picks:[], chaos:0, dayMins:[0,0,0,0,0], clock:540, day:0, cday:0, bonus:'', tools:[], fit:{}, pain:'', email:'', linkedin:'', sent:false}; }
+reset();
+const $ = s => document.querySelector(s);
+const fmt = m => { m = Math.round(m); const h = Math.floor(m/60)%24, mm = m%60; return String(h).padStart(2,'0')+':'+String(mm).padStart(2,'0'); };
+const dur = m => (m>=60? Math.floor(m/60)+'h ' : '') + String(m%60).padStart(2,'0')+'m';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nm = () => S.name ? esc(S.name) : 'friend';
+const track = (ev, p) => { try { window.gtag && gtag('event', ev, p||{}); } catch(e){} };
+const leaveAt = d => 540 + BASE + S.dayMins[d];
+
+function renderOffice(active){
+  $('#office').innerHTML = ORDER.map(id => `<div class="desk ${id===active?'active':''}">
+    <span class="bang hand">!</span>${figure(id)}<div class="nick"><span>${CAST[id].nick}</span></div></div>`).join('');
+}
+function renderDays(){
+  $('#days').innerHTML = DAYS.map((d,i) => `<span class="day ${i<S.day?'done':i===S.day?'on':''}">${d}</span>`).join('');
+}
+function setClock(m){ $('#clock').innerHTML = `<small>CLOCK</small>${DAYS[Math.min(S.cday,4)]} ${fmt(m)}`; }
+function animateClock(from, to){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ setClock(to); return; }
+  const t0 = performance.now(), T = 900;
+  const step = t => { const k = Math.min(1,(t-t0)/T); setClock(from + (to-from)*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function renderChaos(){
+  document.querySelectorAll('#chaosBox .pip').forEach((p,i)=>p.classList.toggle('on', i<S.chaos));
+  $('#chaosBox').classList.toggle('alarm', S.chaos>=2);
+  $('#chaosBox .label').textContent = S.chaos>=2 ? 'CHAOS: TAKEN OVER' : 'CHAOS METER';
+}
+function show(html){ const c = $('#card'); c.innerHTML = html; c.classList.remove('fade'); void c.offsetWidth; c.classList.add('fade'); if(c.getBoundingClientRect().top < 0) c.scrollIntoView({behavior:'smooth'}); }
+
+// ===== Screens =====
+function intro(){
+  reset(); renderOffice(null); renderDays(); setClock(540); renderChaos();
+  show(`<div class="kicker">BAIN-QUIZ · START</div>
+    <span class="note hand">→ no AI trivia</span>
+    <h1>Five colleagues.<br>One of them is <span class="hl">you</span>.</h1>
+    <p class="lead">Live one work week in their office: 12 decisions, about 4 minutes. Every choice moves the clock. Let's see what time you go home.</p>
+    <div class="field"><label class="label" for="nm">WHAT SHOULD WE CALL YOU?</label><input type="text" id="nm" placeholder="First name" maxlength="40" autocomplete="given-name"></div>
+    <div class="field"><label class="label" for="role">YOUR ROLE</label><select id="role"><option value="">Choose your role</option>${ROLES.map(r=>`<option>${r}</option>`).join('')}</select></div>
+    <div class="err" id="err"></div>
+    <div class="row" style="margin-top:6px"><button class="btn yellow" id="go">Start Monday</button></div>`);
+  const go = () => {
+    S.name = $('#nm').value.trim(); S.role = $('#role').value;
+    if(!S.name || !S.role){ $('#err').textContent = 'Add your name and your role to start.'; return; }
+    track('quiz_start', {role:S.role}); guess();
+  };
+  $('#go').onclick = go; $('#nm').onkeydown = e => { if(e.key==='Enter') go(); };
+}
+function guess(){
+  show(`<div class="kicker">BAIN-QUIZ · BEFORE WE START</div>
+    <h2>OK ${nm()}, which one do you think you are?</h2>
+    <div class="guess">${ORDER.map(id=>`<button class="gcard" data-id="${id}">${figure(id)}<b>${CAST[id].nick}</b><i>“${CAST[id].line}”</i></button>`).join('')}</div>`);
+  document.querySelectorAll('.gcard').forEach(b => {
+    b.onmouseenter = () => renderOffice(b.dataset.id);
+    b.onclick = () => { S.guess = b.dataset.id; scene(); };
+  });
+}
+function scene(){
+  const sc = SCENES[S.i];
+  if(sc.day !== S.cday){ S.cday = sc.day; S.clock = 540; }
+  S.day = sc.day; renderDays(); setClock(S.clock); renderOffice(null);
+  const opts = sc.opts.slice().sort(()=>Math.random()-.5);
+  show(`<div class="kicker">${DAYNAME[sc.day].toUpperCase()} · DECISION ${S.i+1} OF ${SCENES.length}</div>
+    <h2>${sc.q}</h2>
+    <div class="opts">${opts.map((o,k)=>`<button class="opt" data-id="${o[0]}"><span class="k">${'ABCDE'[k]}</span><span>${o[1]}</span></button>`).join('')}</div>
+    <div class="react" id="react"></div>
+    <div class="row"><button class="btn" id="next" hidden>Next</button></div>`);
+  document.querySelectorAll('.opt').forEach(b => b.onclick = () => pick(b, sc, opts));
+}
+function pick(btn, sc, opts){
+  const id = btn.dataset.id, o = opts.find(x=>x[0]===id), c = CAST[id];
+  document.querySelectorAll('.opt').forEach(b => { b.disabled = true; b.classList.add(b===btn?'picked':'faded'); });
+  S.picks.push({id, area:sc.area, day:sc.day});
+  if(id==='lukas'){ S.chaos++; renderChaos(); }
+  const from = S.clock; S.clock += c.mins; S.dayMins[sc.day] += c.mins;
+  animateClock(from, S.clock); renderOffice(id);
+  const r = $('#react');
+  r.innerHTML = `${figure(id)}<div><div class="who">${c.nick.toUpperCase()}</div><div class="say">${o[2]}</div></div><div class="cost">+${dur(c.mins)}</div>`;
+  r.classList.add('show');
+  const n = $('#next'); n.hidden = false;
+  if(n.getBoundingClientRect().bottom > innerHeight) n.scrollIntoView({behavior:'smooth', block:'end'});
+  const last = S.i === SCENES.length-1, endOfDay = last || SCENES[S.i+1].day !== sc.day;
+  n.textContent = endOfDay ? `End ${DAYNAME[sc.day]}` : 'Next';
+  n.onclick = () => { S.i++; if(last) bonus(); else if(endOfDay) dayEnd(sc.day); else scene(); };
+  n.focus({preventScroll:true});
+}
+function bonus(){
+  renderOffice(null);
+  show(`<div class="kicker">FRIDAY · 17:55 · BONUS, NOT SCORED</div>
+    <h2>Be honest: who wrote your last LinkedIn post?</h2>
+    <div class="opts">${BONUS.map((b,k)=>`<button class="opt" data-k="${k}"><span class="k">${'ABCDE'[k]}</span><span>${esc(b)}</span></button>`).join('')}</div>`);
+  document.querySelectorAll('.opt').forEach(b => b.onclick = () => { S.bonus = BONUS[b.dataset.k]; dayEnd(4); });
+}
+function dayEnd(d){
+  const scenes = S.dayMins[d], leave = leaveAt(d), n = SCENES.filter(s=>s.day===d).length;
+  animateClock(S.clock, leave); S.clock = leave; S.cday = d;
+  renderOffice(null);
+  const verdict = leave <= 16*60+30 ? 'Home before the traffic.' : leave <= 17*60+30 ? 'Almost on time.' : leave <= 19*60 ? 'Dinner is cold.' : 'The cleaners know your name.';
+  const fri = d === 4;
+  show(`<div class="kicker">${DAYNAME[d].toUpperCase()} · END OF DAY</div>
+    <span class="note hand">→ ${verdict}</span>
+    <h2>${fri ? `That's the week, ${nm()}.` : `${DAYNAME[d]} is over, ${nm()}.`}</h2>
+    <div class="ledger">
+      <div><span>Start</span><span>09:00</span></div>
+      <div><span>Your ${n} decisions today</span><span>+${dur(scenes)}</span></div>
+      <div><span>Meetings, lunch, everything else</span><span>+${dur(BASE)}</span></div>
+      <div class="tot"><span>You left at</span><span>${fmt(leave)}</span></div>
+    </div>
+    <p class="label" style="margin-top:6px">THE CONDUCTOR LEFT AT ${fmt(540+BASE+n*CAST.kwame.mins)}</p>
+    <div class="row"><button class="btn${fri?' yellow':''}" id="go">${fri ? 'Almost there: who are you?' : `Start ${DAYNAME[d+1]}`}</button></div>`);
+  S.day = d+1; renderDays();
+  $('#go').onclick = () => { if(fri) tools(); else scene(); };
+}
+function tools(){
+  renderOffice(null);
+  show(`<div class="kicker">ALMOST THERE · 1 OF 3</div>
+    <h2>Which tools do you use every week?</h2>
+    <p class="lead">Pick all that apply. Your plan uses them.</p>
+    <div class="chips">${TOOLS.map(t=>`<button class="chip" aria-pressed="false">${t}</button>`).join('')}</div>
+    <div class="row"><button class="btn" id="go">Next</button></div>`);
+  document.querySelectorAll('.chip').forEach(c => c.onclick = () => { c.classList.toggle('on'); c.setAttribute('aria-pressed', c.classList.contains('on')); });
+  $('#go').onclick = () => { S.tools = [...document.querySelectorAll('.chip.on')].map(c=>c.textContent); fit(); };
+}
+function fit(){
+  show(`<div class="kicker">ALMOST THERE · 2 OF 3</div>
+    <h2>Four quick ones, so your plan fits your situation.</h2>
+    ${FIT.map(([k,q,os])=>`<div class="q" data-k="${k}"><p>${q}</p><div class="chips">${os.map(o=>`<button class="chip" aria-pressed="false">${esc(o)}</button>`).join('')}</div></div>`).join('')}
+    <div class="q"><p>What's your biggest pain with AI at work? <span class="label">(optional)</span></p>
+      <input type="text" id="pain" maxlength="200" placeholder="The hype, yet another tool, too technical for my role…" style="max-width:640px"></div>
+    <div class="err" id="err"></div>
+    <div class="row"><button class="btn" id="go">Next</button></div>`);
+  document.querySelectorAll('.q[data-k]').forEach(q => q.querySelectorAll('.chip').forEach(c => c.onclick = () => {
+    q.querySelectorAll('.chip').forEach(x=>{x.classList.remove('on'); x.setAttribute('aria-pressed','false');});
+    c.classList.add('on'); c.setAttribute('aria-pressed','true'); S.fit[q.dataset.k] = c.textContent;
+  }));
+  $('#go').onclick = () => {
+    if(FIT.some(([k])=>!S.fit[k])){ $('#err').textContent = 'Answer the five questions above to continue.'; return; }
+    S.pain = $('#pain').value.trim(); gate();
+  };
+}
+function gate(){
+  show(`<div class="kicker">ALMOST THERE · 3 OF 3</div>
+    <span class="note hand">→ your colleagues are waiting</span>
+    <h2>Where should we send your result and your 4-week plan, ${nm()}?</h2>
+    <form id="f" novalidate>
+      <div class="field"><label class="label" for="em">WORK EMAIL</label><input type="email" id="em" required autocomplete="email" placeholder="you@company.com"></div>
+      <div class="field"><label class="label" for="li">LINKEDIN PROFILE (OPTIONAL)</label><input type="url" id="li" autocomplete="url" placeholder="linkedin.com/in/…"></div>
+      <label class="check"><input type="checkbox" id="ok"><span>I agree that Become AI Native emails me my result, my plan and related updates. I can unsubscribe at any time. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a></span></label>
+      <div class="err" id="err"></div>
+      <div class="row"><button class="btn yellow" type="submit">Show my result</button></div>
+    </form>`);
+  $('#f').onsubmit = e => {
+    e.preventDefault();
+    const em = $('#em').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ $('#err').textContent = 'Add a valid email.'; return; }
+    if(!$('#ok').checked){ $('#err').textContent = 'Tick the box so we can send your result.'; return; }
+    S.email = em; S.linkedin = $('#li').value.trim();
+    result();
+  };
+}
+function compute(){
+  const total = S.picks.reduce((a,p)=>a+CAST[p.id].pts,0);
+  const who = S.chaos>=2 ? 'lukas' : total<=20 ? 'henk' : total<=29 ? 'sofia' : total<=38 ? 'oksana' : 'kwame';
+  const areas = {}; AREAS.forEach(([k])=>areas[k] = S.picks.filter(p=>p.area===k).reduce((a,p)=>a+CAST[p.id].pts,0));
+  const busy = Math.round((48-total)/36*100);
+  const fitOk = !(S.fit.years==='Under 18 months' || S.fit.time==='Not this month');
+  return {total, who, areas, busy, fitOk};
+}
+function send(R){
+  if(S.sent) return; S.sent = true;
+  const payload = {
+    name:S.name, email:S.email, linkedin:S.linkedin, consent:true, consent_at:new Date().toISOString(),
+    role:S.role, guess:CAST[S.guess].slug, character:CAST[R.who].slug, total:R.total, chaos:S.chaos, busywork:R.busy,
+    ...R.areas, fit:R.fitOk?'yes':'no', years:S.fit.years, ai_allowed:S.fit.ai_allowed, keep_up:S.fit.keep_up, manages:S.fit.manages, time:S.fit.time,
+    pain:S.pain, tools:S.tools, bonus:S.bonus, answers:S.picks.map(p=>CAST[p.id].slug), leave_times:[0,1,2,3,4].map(d=>fmt(leaveAt(d))),
+    source:params.get('source')||'', utm_source:params.get('utm_source')||'', utm_campaign:params.get('utm_campaign')||'', page:location.pathname, quiz_version:'game-v1'
+  };
+  track('quiz_complete', {character:payload.character, fit:payload.fit});
+  if(!WEBHOOK_URL){ console.info('Quiz payload (no webhook set):', payload); return; }
+  fetch(WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), keepalive:true}).catch(()=>{});
+}
+function result(){
+  const R = compute(), who = R.who, c = CAST[who], P = PLANS[who];
+  send(R);
+  renderOffice(who); S.day = 5; renderDays();
+  const g = S.guess===who ? 'You called it. Self-awareness: 10/10.' : `You thought you were ${CAST[S.guess].nick}. Plot twist.`;
+  const tips = AREAS.filter(([k])=>R.areas[k]<=4).map(([k,n,l,t])=>[`${n.toUpperCase()} · LESSONS ${l}`,t]);
+  if(S.chaos>=1) tips.push(GUARDRAILS);
+  const course = ['sofia','oksana','lukas'].includes(who) && R.fitOk;
+  let next;
+  if(who==='kwame'){
+    next = `<div class="label">YOUR NEXT STEP</div><h3 style="margin-top:4px">No course for you. Take your team with you.</h3>
+      <p>You already work the way our intensive ends. Send this to the managers around you, and see who they are.</p>
+      <div class="row"><button class="btn" id="team">Copy link for your team</button><span class="label" id="teamOk"></span></div>`;
+  } else if(course){
+    const sandbox = ["It's restricted","It's not allowed"].includes(S.fit.ai_allowed);
+    next = `<div class="label">YOUR NEXT STEP · ${c.jump.toUpperCase()}</div><h3 style="margin-top:4px">The intensive: 30 days, your real work, a connected agent</h3>
+      <p>After 30 days you can:</p><ul>${OUTCOMES[who].map(o=>`<li>${o}</li>`).join('')}</ul>
+      <ul style="margin-top:10px;list-style:none;margin-left:0">
+        <li>→ 14 lessons plus 3 bonus lessons. Each: 20 min theory, about 40 min practice, a 20-min test that an AI agent checks.</li>
+        <li>→ Live Wednesday sessions, recorded. No coding experience needed.</li>
+        <li>→ You need a paid Claude subscription with Claude Code (from $20 a month) and a computer with admin rights.</li>
+        <li>→ €2,500 excluding VAT. Next start: Monday 11 January 2027.</li></ul>
+      ${sandbox?`<div class="extra"><b>Your company restricts AI?</b> Every lab runs on Sandbox, a made-up travel marketplace of 120 people with a knowledge base, about 150 Jira tickets and Slack exports. You also leave with a data policy and a rollout plan for your company.</div>`:''}
+      ${S.fit.manages==='Yes'?`<div class="extra"><b>Managers report to you?</b> Bring your team: the team offer is 20% off.</div>`:''}
+      <div class="row"><a class="btn yellow" href="${APPLY_URL}?page=quiz-${c.slug}" rel="noopener">Apply for the intensive</a><a class="btn ghost" href="/#program">See the program</a></div>`;
+  } else {
+    next = `<div class="label">YOUR NEXT STEP</div><h3 style="margin-top:4px">See it live in a Lightning Session</h3>
+      <p>We take real manager tasks and do them three ways: without AI, with an assistant, and with an agent. We'll email you the next date.</p>`;
+  }
+  const share = `I'm ${c.nick} on the Become AI Native quiz. On Monday I left the office at ${fmt(leaveAt(0))}. Which colleague are you? https://becomeainative.io/quiz/`;
+  show(`<div class="kicker">YOUR RESULT · ${esc(S.email)}</div>
+    <div class="res">
+      <div class="fig">${figure(who)}</div>
+      <div>
+        <p class="label">${nm().toUpperCase()}, YOU ARE</p>
+        <h1 style="margin:2px 0 6px">${c.nick}</h1>
+        <div class="quote">“${c.line}”</div>
+        <p style="font-weight:700">${g}</p>
+        <p style="margin-top:8px">${P.intro}</p>
+        <div class="week">${[0,1,2,3,4].map(d=>`<div><b>${fmt(leaveAt(d))}</b><span>${DAYS[d]}, YOU LEFT</span></div>`).join('')}</div>
+        <p class="label">BUSYWORK STILL ON YOUR PLATE: ${R.busy}% (HIGHLY UNSCIENTIFIC)</p>
+
+        <h3>Your six areas</h3>
+        ${AREAS.map(([k,n])=>`<div class="area"><div class="top"><span>${n}</span><span>${R.areas[k]}/8</span></div><div class="track"><div class="fill" style="width:0" data-w="${R.areas[k]/8*100}"></div></div></div>`).join('')}
+        ${tips.map(t=>`<div class="tip"><b>${t[0]}</b>${t[1]}</div>`).join('')}
+
+        <h3>Your 4-week plan</h3>
+        <div class="plan">${P.weeks.map((w,i)=>`<div><span class="wk">WEEK ${i+1}</span><div><b>${w[0]}</b><p>${w[1]}</p><p class="done">Done when ${w[2]}</p></div></div>`).join('')}</div>
+        <p class="label" style="margin-top:8px">${WEBHOOK_URL?'THE FULL PLAN IS ON ITS WAY TO YOUR INBOX':'TEST MODE: NO EMAIL IS SENT YET'}</p>
+
+        <div class="next">${next}</div>
+
+        <h3>Share your colleague</h3>
+        <div class="row" style="margin-top:6px">
+          <a class="btn ghost" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://becomeainative.io/quiz/')}" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <button class="btn ghost" id="copy">Copy post text</button><button class="btn ghost" id="again">Play again</button><span class="label" id="copied"></span></div>
+      </div>
+    </div>`);
+  requestAnimationFrame(()=>document.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%'));
+  const copy = async (t, el) => { try { await navigator.clipboard.writeText(t); $(el).textContent = 'COPIED'; } catch(e){ $(el).textContent = t; } };
+  $('#copy').onclick = () => copy(share, '#copied');
+  $('#again').onclick = intro;
+  if($('#team')) $('#team').onclick = () => copy('https://becomeainative.io/quiz/?source=team', '#teamOk');
+}
+intro();
+</script>
+</body>
+</html>
