@@ -10,7 +10,7 @@
   var cohort = BASE_COHORT + Math.max(0, monthsSince);
   var start = new Date(now.getFullYear(), now.getMonth() + 1, 15);
   var startText = start.getDate() + " " + start.toLocaleString("en-GB", { month: "long" });
-  var code = "BAI-" + (cohort < 10 ? "0" : "") + cohort;
+  var code = "BAIN-" + (cohort < 10 ? "0" : "") + cohort;
 
   function fill(selector, text) {
     var els = document.querySelectorAll(selector);
