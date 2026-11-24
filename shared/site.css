@@ -45,6 +45,7 @@
   --rule-strong: #B5B9C2;
   --pen: #1A4DFF;      /* blue pencil: marks, links */
   --marker: #F6E94A;   /* highlighter: highlights, CTA */
+  --alert: #FF5A1F;    /* offer accent: only during a time-limited offer */
 
   --font-body: 'Schibsted Grotesk', system-ui, sans-serif;
   --font-hand: 'Caveat', cursive;
@@ -433,3 +434,70 @@ a.btn-ghost { color: var(--ink); text-decoration: none; }
 }
 
 .problem__statement { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--rule); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.4; }
+
+/* =========================================================
+   BLACK FRIDAY 2026 - remove on Sun 13 Dec 2026
+   <html class="bf"> shows [data-bf] and hides [data-bf-off].
+   site.js removes the class after Sat 12 Dec, 23:59 CET.
+   No new hues (DESIGN.md section 4): ink ground, pen strike, marker price.
+   ========================================================= */
+html:not(.bf) [data-bf] { display: none !important; }
+html.bf [data-bf-off] { display: none !important; }
+
+.bf-banner {
+  display: block;
+  background: var(--alert);
+  color: var(--ink);
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px var(--gutter);
+}
+.bf-banner:hover { color: var(--ink); text-decoration: underline; }
+.bf-sticker {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--alert);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 5px 10px;
+  transform: rotate(-3deg);
+  margin-bottom: 6px;
+}
+.bf-note { font-size: 30px; transform: rotate(-4deg); padding-bottom: 4px; }
+
+.price__amount .strike { font-weight: 700; margin-right: 6px; }
+
+/* #apply on the ink ground: the only black section of the page. */
+html.bf .apply { background: var(--ink); color: var(--paper); }
+html.bf .apply .label,
+html.bf .apply .stack > .muted,
+html.bf .apply .faq__item p { color: var(--rule-strong); }
+html.bf .apply .faq__item { border-color: var(--muted); }
+html.bf .apply .faq a { color: var(--paper); text-decoration-color: var(--marker); }
+html.bf .apply .faq a:hover { color: var(--marker); }
+.bf-price { background: var(--marker); color: var(--ink); padding: 0 0.12em; }
+.bf-heading { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 20px; }
+
+/* =========================================================
+   LETTER PAGE (/letter/)
+   ========================================================= */
+.letter {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: clamp(20px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 17px;
+}
+.letter__subject { font-weight: 700; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+.fill-in { text-decoration: underline dashed var(--pen); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.copy-status { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+/* Lists on inner pages (/terms-and-refunds/) */
+.page ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
