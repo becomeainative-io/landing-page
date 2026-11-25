@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The route to AI-native | Become AI Native</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Your personal 30-day route from The Analog Legend to The Conductor: 16 stops and 30 changes in mindset, tools and methods.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Become AI Native">
+<meta property="og:title" content="The route to AI-native">
+<meta property="og:description" content="16 stops from The Analog Legend to The Conductor.">
+<meta property="og:url" content="https://becomeainative.io/personal-plan/">
+<link rel="icon" type="image/svg+xml" href="/shared/favicon.svg?v=2">
+<!-- Google Analytics 4 + cookie consent (gtag.js loads only after Accept) -->
+<link rel="stylesheet" href="/shared/consent.css">
+<script src="/shared/consent.js?v=2"></script>
+<link rel="preload" href="/shared/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Source: becomeainative.io-main-project, content/sales/personal-plan/route.html -->
+<style>
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/shared/fonts/schibsted-grotesk-latin.woff2) format('woff2')}
+@font-face{font-family:'Caveat';font-style:normal;font-weight:500 700;font-display:swap;src:url(/shared/fonts/caveat-latin.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/shared/fonts/ibm-plex-mono-400-latin.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/shared/fonts/ibm-plex-mono-500-latin.woff2) format('woff2')}
+:root {
+  --paper: #FFFFFF;
+  --desk: #F4F5F7;
+  --ink: #111111;
+  --muted: #4A4E5A;
+  --struck: #8A8F99;
+  --rule: #DADDE3;
+  --rule-strong: #B5B9C2;
+  --pen: #1A4DFF;
+  --marker: #F6E94A;
+  --alert: #FF5A1F;
+  --font-body: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --gutter: clamp(16px, 3vw, 40px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+a { color: inherit; }
+
+.bain-hl     { background: linear-gradient(transparent 52%, var(--marker) 52%); padding: 0 0.08em; }
+.bain-strike { color: var(--struck); text-decoration: line-through; text-decoration-color: var(--pen); text-decoration-thickness: 0.09em; }
+.label-mono { font: 400 12px/1.4 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+.wrap { max-width: 1400px; margin: 0 auto; padding: 0 var(--gutter); }
+section { border-top: 1px solid var(--rule); }
+
+/* Header */
+header .wrap { padding-top: 18px; padding-bottom: 22px; }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; }
+.logo { font-weight: 800; font-size: 20px; letter-spacing: -0.045em; }
+.logo .hand { font-family: var(--font-hand); font-weight: 700; color: var(--pen); display: inline-block; transform: rotate(-6deg); font-size: 24px; letter-spacing: 0; margin-left: 3px; }
+.head { margin-top: 14px; }
+h1 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.02; font-weight: 800; letter-spacing: -0.045em; }
+.why { background: var(--desk); padding: 18px 20px 20px; margin-top: 18px; }
+.why-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 14px; }
+.why-head h2 { font-size: clamp(22px, 2.2vw, 28px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.why-head .hand { font: 700 24px var(--font-hand); color: var(--pen); }
+.reasons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.reason { background: var(--paper); border: 2px solid var(--ink); padding: 14px 18px 16px; position: relative; }
+.reason .num { position: absolute; top: -2px; right: -2px; background: var(--ink); color: var(--paper); font: 500 12px var(--font-mono); padding: 4px 9px; }
+.reason .stat { display: block; font-size: clamp(34px, 3.4vw, 46px); font-weight: 800; letter-spacing: -0.045em; line-height: 1; color: var(--pen); margin-bottom: 8px; }
+.reason .stat .bain-strike { font-size: 0.55em; margin-right: 8px; letter-spacing: -0.02em; }
+.reason h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+.reason p { font-size: 14px; line-height: 1.45; color: var(--muted); }
+.reason p b { color: var(--ink); }
+.reason .aside { display: block; font: 700 22px/1 var(--font-hand); color: var(--pen); margin-top: 10px; transform: rotate(-3deg); transform-origin: left; }
+.reason { display: flex; flex-direction: column; }
+.reason p { flex: 1; }
+@media (max-width: 760px) { .reasons { grid-template-columns: 1fr; } }
+
+/* Route map */
+.route .wrap { padding-top: 14px; padding-bottom: 14px; }
+.map { position: relative; width: 100%; }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.band { position: absolute; left: 0; right: 0; background: var(--desk); z-index: 0; }
+.stage b { font: 800 14px var(--font-body); color: var(--ink); letter-spacing: -0.01em; margin-left: 6px; }
+.node {
+  position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; z-index: 2;
+  background: var(--paper); border: 2px solid var(--ink);
+  display: grid; place-items: center; font: 500 11px var(--font-mono); color: var(--ink);
+}
+.step { position: absolute; z-index: 3; font-size: 13px; line-height: 1.28; text-align: center; }
+.step b { display: block; font-weight: 800; font-size: 14px; letter-spacing: -0.01em; margin-bottom: 2px; }
+.step .sl { display: block; font-size: 12.5px; color: var(--muted); }
+.mile { position: absolute; z-index: 4; background: var(--paper); border: 2px solid var(--ink); padding: 9px 12px 10px; }
+.mile .kicker { display: block; font: 500 10px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.mile .mname { display: table; background: linear-gradient(transparent 55%, var(--marker) 55%); padding: 0 0.1em; margin-left: -0.1em !important; font-size: 17px; font-weight: 800; letter-spacing: -0.02em; margin: 1px 0; }
+.mile .mline { display: block; font-family: var(--font-hand); font-weight: 700; color: var(--pen); font-size: 18px; line-height: 1.05; margin-bottom: 4px; }
+.mile .mabout { display: block; font-size: 12px; line-height: 1.36; color: var(--muted); }
+
+.mile .mpic { float: right; height: 56px; width: auto; max-width: 60%; margin: -2px -4px 2px 8px; }
+.mile .mname { clear: both; }
+.mile .mnext { display: block; clear: both; border-top: 1px dashed var(--rule-strong); margin-top: 8px; padding-top: 6px; font: 500 10px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.mile .mnext b { display: block; font: 800 14px var(--font-body); color: var(--ink); letter-spacing: -0.01em; text-transform: none; }
+.mile .mnext.win { color: var(--ink); }
+.spic { position: absolute; z-index: 1; height: 58px; width: auto; max-width: 120px; transform: translate(-50%, -100%); mix-blend-mode: multiply; }
+.step .aside { display: block; font: 700 19px/1 var(--font-hand); color: var(--pen); margin-top: 5px; transform: rotate(-3deg); }
+
+
+/* Bottom */
+.bottom .wrap { padding-top: 28px; padding-bottom: 32px; }
+.bottom h2 { font-size: clamp(20px, 2vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; }
+.ways-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 14px; }
+.ways-head .hand { font: 700 24px var(--font-hand); color: var(--pen); }
+.ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 36px; }
+.way { position: relative; display: flex; flex-direction: column; border: 2px solid var(--ink); padding: 16px 20px 18px; background: var(--paper); }
+.way.alone { border-style: dashed; border-color: var(--rule-strong); background: var(--desk); }
+.way .num { position: absolute; top: -2px; right: -2px; background: var(--ink); color: var(--paper); font: 500 12px var(--font-mono); padding: 4px 9px; }
+.way.alone .num { background: var(--struck); }
+.way .wpic { align-self: flex-end; height: 76px; width: auto; margin: 10px 24px -30px 0; mix-blend-mode: multiply; }
+.way .kicker { display: block; font: 500 11px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.way .stat { display: block; font-size: clamp(34px, 3.4vw, 46px); font-weight: 800; letter-spacing: -0.045em; line-height: 1; margin: 4px 0 8px; }
+.way.alone .stat { color: var(--muted); }
+.way.us .stat { color: var(--pen); }
+.way h3 { clear: right; font-size: 19px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+.way p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.way p b { color: var(--ink); }
+.way ul { list-style: none; margin: 12px 0 0; flex: 1; }
+.way li { font: 400 12.5px/1.45 var(--font-mono); padding: 5px 0 5px 24px; position: relative; border-top: 1px dashed var(--rule-strong); }
+.way li::before { position: absolute; left: 0; top: 4px; font: 700 14px var(--font-body); }
+.way.alone li::before { content: "✕"; color: var(--alert); }
+.way.us li::before { content: "✓"; color: var(--pen); }
+.way .aside { display: block; font: 700 22px/1 var(--font-hand); color: var(--pen); margin-top: 12px; transform: rotate(-3deg); transform-origin: left; }
+.way.us .bain-hl { padding: 0 0.1em; }
+.deal { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px 36px; border: 2px solid var(--ink); background: var(--paper); padding: 26px 28px 26px; margin-top: 14px; }
+@media (max-width: 860px) { .deal { grid-template-columns: 1fr; padding: 24px 18px; } }
+.deal .sticker { position: absolute; top: -22px; right: 22px; background: var(--alert); color: var(--ink); font: 800 34px/1 var(--font-body); letter-spacing: -0.04em; padding: 6px 14px 8px; transform: rotate(4deg); }
+.deal .kicker { display: block; font: 500 11px var(--font-mono); color: var(--muted); letter-spacing: 0.08em; }
+.deal h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.02; letter-spacing: -0.045em; margin: 6px 0 14px; }
+.deal-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 14px; }
+.deal-price .old { font-size: 28px; font-weight: 700; color: var(--struck); text-decoration: line-through; text-decoration-color: var(--alert); text-decoration-thickness: 3px; }
+.deal-price .new { font-size: clamp(52px, 6vw, 76px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.9; color: var(--pen); }
+.deal-price small { font: 400 11px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.deal p { font-size: 15px; line-height: 1.55; color: var(--muted); }
+.deal p b { color: var(--ink); }
+.deal-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 20px; }
+.btn { display: inline-flex; align-items: center; min-height: 54px; background: var(--marker); color: var(--ink); text-decoration: none; font-weight: 800; font-size: 18px; padding: 0 24px; border: 2px solid var(--ink); white-space: nowrap; }
+.btn:hover { background: var(--ink); color: var(--marker); }
+.btn:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
+.deal .aside { font: 700 22px/1 var(--font-hand); color: var(--pen); transform: rotate(-3deg); display: inline-block; }
+.deal-side { background: var(--desk); padding: 18px 18px 16px; align-self: start; }
+.deal-side img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.who { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; }
+.who span { border: 1.5px solid var(--ink); background: var(--paper); font: 500 9.5px var(--font-mono); text-align: center; padding: 4px 2px; letter-spacing: 0.04em; }
+.who span.me { background: var(--marker); }
+.deal-side .aside { display: block; margin: 12px 0 14px; }
+.facts { display: grid; grid-template-columns: auto 1fr; font: 400 12px/1.4 var(--font-mono); }
+.facts dt, .facts dd { border-top: 1px dashed var(--rule-strong); padding: 6px 0; }
+.facts dt { color: var(--muted); letter-spacing: 0.06em; padding-right: 14px; }
+.facts dd { color: var(--ink); }
+.facts .hot { background: linear-gradient(transparent 50%, var(--marker) 50%); }
+footer .wrap { padding-top: 14px; padding-bottom: 20px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 12px var(--font-mono); color: var(--muted); border-top: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">become<span class="hand">ai native</span></div>
+      <div class="label-mono">BAIN-PLAN, the 30-day route</div>
+    </div>
+    <div class="head">
+      <h1>The route to <span class="bain-hl">AI-native</span></h1>
+    </div>
+    <div class="why">
+      <div class="why-head">
+        <h2>Why follow this route?</h2>
+        <span class="hand">Three reasons from our research of 800+ managers</span>
+      </div>
+      <div class="reasons">
+        <div class="reason">
+          <span class="num">01</span>
+          <span class="stat">+73%</span>
+          <h3>More money. Every month.</h3>
+          <p>A manager in Europe who is not AI-native earns <b>€59,000</b> a year. An AI-native manager earns <b>€102,000</b>. That is about <b>€3,600 more each month</b>. Every month. A new laptop, a good holiday or a lifetime of very good coffee. Your Excel skills are legendary, we know. But the market pays for other skills now.</p>
+          <span class="aside">yes, every single month</span>
+        </div>
+        <div class="reason">
+          <span class="num">02</span>
+          <span class="stat">89%</span>
+          <h3>Do not miss the boat</h3>
+          <p><b>57 of the 64 companies</b> that we interviewed in 2026 expect their managers to be AI-native. Read it from the other side: 89% of companies do not need a manager who is not AI-native. The market does not wait for your annual review. Stay relevant, or explain to the recruiter why you still count tickets by hand.</p>
+          <span class="aside">the boat leaves now</span>
+        </div>
+        <div class="reason">
+          <span class="num">03</span>
+          <span class="stat">Up to 10×</span>
+          <h3>Get the fun back into your work</h3>
+          <p>Status reports that nobody reads. Copies from Jira to Slack and back. Give all this routine work to AI agents, and keep <b>the decisions</b> for yourself. You do up to <b>10 times more</b> in the same week, and the work that stays with you is the work that you like. Maybe you even start to like Mondays.</p>
+          <span class="aside">Mondays, but fun</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="route">
+  <div class="wrap">
+    <div class="map" id="map" role="img" aria-label="Route map from The Analog Legend to The Conductor in 3 stages and 16 stops"></div>
+  </div>
+</section>
+
+<section class="bottom">
+  <div class="wrap">
+    <div class="ways-head">
+      <h2>Two ways to the finish</h2>
+      <span class="hand">both work. One of them works faster</span>
+    </div>
+    <div class="ways">
+      <div class="way alone">
+        <span class="num">A</span>
+        <img class="wpic" src="/personal-plan/img/alone.png" alt="">
+        <span class="kicker">PATH A: ALONE</span>
+        <span class="stat">About 600 hours</span>
+        <h3>Blood, sweat and 47 open tabs</h3>
+        <p>It is possible. Really. You need <b>600 free hours</b>, a lot of motivation and a very patient family. You watch 200 videos, and half of them are already old. You find the order of the steps by trial and a lot of error. You break your setup twice. Then a new model comes out, and you start again.</p>
+        <ul>
+          <li>About 15 weeks of full-time work, in your free time</li>
+          <li>Nobody tells you if you do it right</li>
+          <li>Motivation lasts until the first busy Friday</li>
+        </ul>
+        <span class="aside">coffee #12, still on step 3</span>
+      </div>
+      <div class="way us">
+        <span class="num">B</span>
+        <img class="wpic" src="/personal-plan/img/with-us.png" alt="">
+        <span class="kicker">PATH B: WITH US</span>
+        <span class="stat">30 days, about 30 hours</span>
+        <h3>We take your hand. <span class="bain-hl">And we do not let go.</span></h3>
+        <p>We already made all the mistakes for you, in real projects. We know the order of the steps, and we know how to explain them so that they stay in your head. <b>Live sessions</b>, an AI agent in your real work tools, and a test task after each lesson. We push you to the result, if you want it or not.</p>
+        <ul>
+          <li>The same 30 changes, in an order that works</li>
+          <li>Practice. A lot of it. No, really a lot</li>
+          <li>Excuses are not accepted. We tried them all</li>
+        </ul>
+        <span class="aside">resistance is useless</span>
+      </div>
+    </div>
+
+    <div class="deal">
+      <div class="sticker">−50%</div>
+      <div class="deal-main">
+        <span class="kicker">PERSONAL OFFER, ONLY FOR YOU</span>
+        <h2>Half the price. <span class="bain-hl">All of the AI-native.</span></h2>
+        <div class="deal-price"><span class="old">€2,500</span><span class="new">€1,250</span><small>BECOME AI-NATIVE, THE INTENSIVE. VAT NOT INCLUDED</small></div>
+        <p>This is not a drill. Your personal Black Friday code cuts the price of the intensive in half: <b>€1,250 instead of €2,500</b>. The same 30 days, the same 30 changes, the same live sessions. Do the math: an AI-native manager earns this difference back in <b>less than two weeks</b>. Or keep the money and spend 600 hours alone. We do not judge. Well, only a little. Your company pays? Even better: we already wrote the letter to your manager, and you only press send. On <b>Sat 12 Dec at 23:59 CET</b>, the form closes, all codes stop, and the price goes back to €2,500. No extensions. We asked ourselves twice.</p>
+        <div class="deal-cta">
+          <a class="btn" href="https://becomeainative.io/#apply">Get my Black Friday code →</a>
+          <span class="aside">your future self says thanks</span>
+        </div>
+      </div>
+      <div class="deal-side">
+        <img src="/personal-plan/img/lineup.png" alt="">
+        <div class="who"><span class="me">#1 YOU</span><span>#2 YOUR BOSS</span><span>#3 YOUR CAT</span><span>#4 LINKEDIN GURU</span></div>
+        <span class="aside">only #1 gets the code. Sorry, cat</span>
+        <dl class="facts">
+          <dt>COHORT 4</dt><dd>Starts Mon 11 Jan 2027</dd>
+          <dt>CODES</dt><dd>From Fri 27 Nov</dd>
+          <dt>CLOSES</dt><dd><span class="hot">Sat 12 Dec, 23:59 CET</span></dd>
+          <dt>AFTER THAT</dt><dd>€2,500 again. Sad, but true</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>becomeainative.io</span><span>From the research of 800+ managers, 2026</span></div>
+</footer>
+
+<script>
+// The four characters of ../quiz.md (section Character) and the 30 changes of ../ai-native-checklist.md.
+// The road has 3 stages. Each stage starts at a character. One stop is one topic: [codes, topic, description, picture, aside].
+// The pictures in img/ are cut from the quiz answer images (landing-page repo, quiz/img/).
+// The texts are in route-steps.md.
+const FINISH = { kicker: 'FINISH, AI-NATIVE', name: 'The Conductor', goal: true, img: 'conductor',
+  line: '"My agents handle it. I decide."',
+  about: 'AI agents get the data, do the routine work and give drafts with sources. The Conductor briefs, checks and decides.' };
+
+const STAGES = [
+  { name: 'Mindset and tools',
+    c: { kicker: 'START', name: 'The Analog Legend', img: 'analog-legend',
+      line: '"I have Excel and a good memory."',
+      about: 'Does each step by hand: reads every ticket, writes every report. Reliable, but one task at a time.' },
+    stops: [
+      [['M2', 'M4'], 'Shift to the AI-native mindset', 'Start each task with one question: which part can an AI agent do? The agent does the work. You check the result and make the decision.', 's01', 'retro is over'],
+      [['T1', 'T3', 'T6'], 'Tools for context and files', 'A chat window forgets your work. Select a workspace where an AI agent works directly in your files, and learn its controls.', 's02', 'bye, chat window'],
+      [['T2', 'T4'], 'Master MD files', 'Markdown is the format that people and AI agents both read well. Keep your notes, specs and reports as .md files in a clear structure.', 's03', 'no more _final_v3'],
+      [['M3', 'X5'], 'Master context management', 'The quality of the AI result depends on the context. Give only what the task needs, one topic in each session, and a handoff note at the end.', 's04', 'less is more'],
+      [['T5', 'X1'], 'Master AI agent instructions', 'An instruction file tells the agent your role, rules and format once. A short brief gives each task its goal, context, result and check.', 's05', 'sorry, Mom'],
+    ] },
+  { name: 'Knowledge and connections',
+    c: { kicker: 'LEVEL 2', name: 'The Copy-Paste Artist', img: 'copy-paste-artist',
+      line: '"Just one more prompt."',
+      about: 'Uses an AI chat every day, but is the bridge: copies the data from the tools to the chat and back.' },
+    stops: [
+      [['X2', 'M6'], 'Make the knowledge base the source of truth', 'Put the facts and decisions of your team in one place, not in chats and heads. Each fact has an owner, a status, a date and a source.', 's06', 'one truth'],
+      [['T7', 'M1'], 'Build team rules for the knowledge base', 'The knowledge base works only when the whole team uses it. The first question goes to the AI agent, and each answer gives its source.', 's07', 'no more 15 one-to-ones'],
+      [['T8'], 'Give AI agents access to everything', 'Without access, the agent is a chat window and you copy the data. Connect it to your documents, tickets, messages and code.', 's08', 'my back says thanks'],
+      [['T9', 'X7'], 'Build safeguards and configure permissions', 'Full access needs clear limits. Configure what the agent can do alone, and approve each action that changes data or sends a message.', 's09', 'with a prenup'],
+      [['M5', 'T10'], 'Make repeatable work automated', 'When you explain a thing for the third time, make it a skill. Test it on real examples, and the agent does the task the same way each time.', 's10', 'done before my coffee'],
+      [['T11', 'X6'], 'A little vibe coding never hurts', 'You do not need to be a developer. The AI agent writes small scripts for your data and for the steps that must be the same each time.', 's11', 'recount #3? never again'],
+    ] },
+  { name: 'Agents do the work',
+    c: { kicker: 'LEVEL 3', name: 'The Workflow Wizard', img: 'workflow-wizard',
+      line: '"I automated our standup."',
+      about: 'Has saved prompts, templates and an automation or two. But AI cannot see the work tools without them.' },
+    stops: [
+      [['T12', 'T16'], 'Build an AI-native management system', 'Connect skills, scripts and tools into one system. Workflows run on a schedule or a trigger, with approvals, and you manage the system.', 's12', 'no more Mondays by hand'],
+      [['X4', 'X3', 'T14'], 'AI-native SDLC', 'Learn to work with units of context: a spec, its criteria and a prototype. Then each person in your team can do their part in the AI-native way.', 's13', 'I review and approve'],
+      [['T13'], 'Version control', 'Files change all the time, and AI agents change them fast. Control the versions like a master: see what changed and go back when you need to.', 's14', 'one history, not three'],
+      [['T15'], 'Know your LLMs inside out', 'Models are different and change each month. Select a model for each task by its quality, its cost and the rules for your data.', 's15', 'very confident? check it'],
+      [['M7'], 'Lead your company to AI-native', 'Record what works and what fails with AI, and share it with your team. Show the way, so that your company follows you to AI-native.', 's16', 'the whole team'],
+    ] },
+];
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+function card(c, st, i) {
+  const e = el('div', 'mile' + (c.goal ? ' goal' : ''));
+  const pic = el('img', 'mpic'); pic.src = `/personal-plan/img/${c.img}.png`; pic.alt = '';
+  e.append(pic, el('span', 'kicker', c.kicker), el('span', 'mname', c.name), el('span', 'mline', c.line), el('span', 'mabout', c.about));
+  if (st) {
+    // The next stage starts at this character.
+    const n = st.stops.reduce((a, s) => a + s[0].length, 0);
+    const next = el('span', 'mnext', `NEXT: STAGE ${i + 1}, ${n} CHANGES`);
+    next.append(el('b', '', st.name));
+    e.append(next);
+  } else {
+    e.append(el('span', 'mnext win', 'YOU WIN. YOU ARE AI-NATIVE.'));
+  }
+  return e;
+}
+function stopBody(title, text, aside) {
+  const f = document.createDocumentFragment();
+  f.append(el('b', '', title), el('span', 'sl', text), el('span', 'aside', aside));
+  return f;
+}
+function pic(file) { const i = el('img', 'spic'); i.src = `/personal-plan/img/${file}.png`; i.alt = ''; return i; }
+
+// Rows of 2 to 5 places, from the screen width. A stop or a character card takes one place.
+// The road goes left to right, then right to left, with square turns.
+function renderWide(map, W) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('aria-hidden', 'true');
+  map.append(svg);
+
+  const m = 22, R = 18, pad = 14;                  // turn margin, corner radius, inner padding
+  const per = Math.max(2, Math.min(5, Math.floor((W - 2 * (m + pad)) / 240)));   // 2 to 5 places in a row
+  const L = m + pad, Rr = W - m - pad;
+  const slot = (Rr - L) / per, cw = slot - 16, lw = slot - 24;
+
+  // One flat sequence: the card of each stage, then its stops, then the finish card.
+  const items = [];
+  let n = 0;
+  STAGES.forEach((st, si) => {
+    items.push({ card: card(st.c, st, si) });
+    st.stops.forEach(([, title, text, file, aside]) => items.push({ n: ++n, title, text, file, aside }));
+  });
+  items.push({ card: card(FINISH) });
+
+  items.forEach(it => {
+    if (it.card) { it.card.style.width = cw + 'px'; map.append(it.card); return; }
+    it.label = el('div', 'step');
+    it.label.append(stopBody(it.title, it.text, it.aside));
+    it.pic = pic(it.file);
+    map.append(it.pic);
+    it.label.style.width = lw + 'px';
+    map.append(it.label);
+  });
+  const cardH = Math.max(...items.filter(it => it.card).map(it => it.card.offsetHeight));
+  const labelH = Math.max(...items.filter(it => it.label).map(it => it.label.offsetHeight));
+  const RY = 96;                                     // the road, from the top of a row
+  const rowH = Math.max(cardH + 16, RY + 20 + labelH + 16);
+  const rows = Math.ceil(items.length / per);
+
+  const road = [];
+  for (let r = 0; r < rows; r++) {
+    const band = el('div', 'band');
+    band.style.top = (r * rowH + 3) + 'px'; band.style.height = (rowH - 6) + 'px';
+    map.prepend(band);
+  }
+  items.forEach((it, i) => {
+    const r = Math.floor(i / per), c = i % per, dir = r % 2 ? -1 : 1;
+    const top = r * rowH, y = top + RY;
+    const x = dir > 0 ? L + (c + 0.5) * slot : Rr - (c + 0.5) * slot;
+    if (c === 0) road.push([x, null, y]);
+    road[r][1] = x;
+    if (it.card) {
+      it.card.style.left = (x - cw / 2) + 'px';
+      it.card.style.top = (top + 8) + 'px';
+      return;
+    }
+    const node = el('div', 'node', String(it.n));
+    node.style.left = x + 'px'; node.style.top = y + 'px';
+    it.label.style.left = (x - lw / 2) + 'px';
+    it.label.style.top = (y + 20) + 'px';
+    it.pic.style.left = x + 'px';
+    it.pic.style.top = (y - 20) + 'px';
+    map.append(node);
+  });
+
+  const H = rows * rowH;
+  map.style.height = H + 'px';
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let d = `M ${road[0][0]} ${road[0][2]}`;
+  road.forEach(([, xe, y], r) => {
+    if (r === road.length - 1) { d += ` L ${xe} ${y}`; return; }
+    const dir = r % 2 ? -1 : 1, xt = dir > 0 ? W - m : m, y2 = road[r + 1][2];
+    d += ` L ${xt - dir * R} ${y} Q ${xt} ${y} ${xt} ${y + R} L ${xt} ${y2 - R} Q ${xt} ${y2} ${xt - dir * R} ${y2}`;
+  });
+  [['#DADDE3', 26, 'square'], ['#FFFFFF', 20, 'square'], ['#1A4DFF', 2.5, 'butt', '10 9']].forEach(([stroke, width, cap, dash]) => {
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', stroke);
+    p.setAttribute('stroke-width', width); p.setAttribute('stroke-linecap', cap); p.setAttribute('stroke-linejoin', 'round');
+    if (dash) p.setAttribute('stroke-dasharray', dash);
+    svg.append(p);
+  });
+}
+
+function renderMap() {
+  const map = document.getElementById('map');
+  const W = map.clientWidth;
+  map.replaceChildren();
+  map.style.height = '';
+  renderWide(map, W);
+}
+
+let lastW = 0;
+function render() { lastW = document.getElementById('map').clientWidth; renderMap(); }
+new ResizeObserver(() => { if (document.getElementById('map').clientWidth !== lastW) render(); }).observe(document.getElementById('map'));
+if (document.fonts) document.fonts.ready.then(render);
+window.addEventListener('load', render);   // the card height depends on the pictures
+render();
+</script>
+
+</body>
+</html>
