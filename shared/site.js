@@ -1,30 +1,87 @@
 // Become AI Native - page behaviour.
 (function () {
-  // Current cohort, worked out from today's date. A new cohort opens every month and
-  // starts on the 15th of the following month: October 2026 is Cohort 3 (starts 15 November),
-  // November 2026 is Cohort 4 (starts 15 December), and so on. The HTML holds the October
-  // 2026 values as a fallback for visitors without JavaScript.
-  var BASE_YEAR = 2026, BASE_MONTH = 9, BASE_COHORT = 3; // month is 0-based: 9 = October
-  var now = new Date();
-  var monthsSince = (now.getFullYear() - BASE_YEAR) * 12 + (now.getMonth() - BASE_MONTH);
-  var cohort = BASE_COHORT + Math.max(0, monthsSince);
-  var start = new Date(now.getFullYear(), now.getMonth() + 1, 15);
-  var startText = start.getDate() + " " + start.toLocaleString("en-GB", { month: "long" });
-  var code = "BAIN-" + (cohort < 10 ? "0" : "") + cohort;
+  var params = new URLSearchParams(location.search);
+
+  // Current cohort. Fixed values: there is no monthly cohort (decision of 1 Nov 2026).
+  // The HTML holds the same values for visitors without JavaScript.
+  var COHORT = 4;
+  var COHORT_CODE = "BAIN-04";
+  var COHORT_START = "Mon 11 Jan 2027";
 
   function fill(selector, text) {
     var els = document.querySelectorAll(selector);
     for (var i = 0; i < els.length; i++) els[i].textContent = text;
   }
-  fill("[data-cohort]", String(cohort));
-  fill("[data-cohort-start]", startText);
-  fill("[data-cohort-code]", code);
-  document.title = document.title.replace(/Cohort \d+/, "Cohort " + cohort);
+  fill("[data-cohort]", String(COHORT));
+  fill("[data-cohort-start]", COHORT_START);
+  fill("[data-cohort-code]", COHORT_CODE);
+  document.title = document.title.replace(/Cohort \d+/, "Cohort " + COHORT);
 
-  // Pass the cohort to Tally. Its confirmation stays inside the iframe.
+  // ---------- Black Friday 2026 (remove on Sun 13 Dec 2026) ----------
+  // The HTML shows the Black Friday parts ([data-bf]) by default: <html class="bf">.
+  // Safety net: after Sat 12 Dec 2026, 23:59 CET the class goes away, CSS hides [data-bf]
+  // and shows [data-bf-off] (the €2,500 price). Test the switch with ?now=2026-12-13.
+  var BF_END = Date.parse("2026-12-12T23:00:00Z"); // 13 Dec 2026, 00:00 CET
+  var now = Date.now();
+  var testNow = params.get("now");
+  if (testNow && !isNaN(Date.parse(testNow))) now = Date.parse(testNow);
+  var bfActive = now < BF_END;
+  if (!bfActive) document.documentElement.classList.remove("bf");
+
+  // ---------- Pass linkedin-id and source to the quiz and the research page ----------
+  var passLinks = document.querySelectorAll("[data-pass-params]");
+  for (var j = 0; j < passLinks.length; j++) {
+    var url = new URL(passLinks[j].getAttribute("href"), location.href);
+    if (params.get("linkedin-id")) url.searchParams.set("linkedin-id", params.get("linkedin-id"));
+    if (params.get("source")) url.searchParams.set("source", params.get("source"));
+    passLinks[j].setAttribute("href", url.pathname + url.search + url.hash);
+  }
+
+  // ---------- Letter page: copy button ----------
+  var copyBtn = document.querySelector("[data-copy-letter]");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      var parts = document.querySelectorAll("[data-letter-part]");
+      var chunks = [];
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].offsetParent === null) continue; // skip hidden variants
+        chunks.push(parts[i].innerText.trim());
+      }
+      var text = chunks.join("\n\n");
+      var status = document.querySelector("[data-copy-status]");
+      function done(msg) { if (status) status.textContent = msg; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { done("Copied. Paste it into your email."); },
+          function () { done("Copy did not work. Select the text and copy it."); }
+        );
+      } else {
+        done("Copy did not work. Select the text and copy it.");
+      }
+    });
+  }
+
+  // ---------- Tally form ----------
+  // Pass cohort, linkedin-id and source from the page address to Tally.
+  // Its confirmation stays inside the iframe.
+  // Tally's embed.js fits the iframe height to the form (dynamicHeight=1).
   var frame = document.querySelector(".tally-embed");
   if (!frame) return;
-  frame.src = frame.src.replace(/([?&])cohort=\d+/, "$1").replace(/&$/, "") + "&cohort=" + cohort;
+  var src = new URL(frame.getAttribute("data-tally-src"));
+  src.searchParams.set("cohort", String(COHORT));
+  src.searchParams.set("source", params.get("source") || "website");
+  if (params.get("linkedin-id")) src.searchParams.set("linkedin-id", params.get("linkedin-id"));
+  frame.setAttribute("data-tally-src", src.toString());
+  function loadTally() {
+    if (typeof window.Tally !== "undefined") window.Tally.loadEmbeds();
+    else if (!frame.src) frame.src = frame.getAttribute("data-tally-src"); // fallback: fixed height from CSS
+  }
+  var tallyScript = document.createElement("script");
+  tallyScript.src = "https://tally.so/widgets/embed.js";
+  tallyScript.onload = loadTally;
+  tallyScript.onerror = loadTally;
+  document.body.appendChild(tallyScript);
+
   var leadRecorded = false;
   window.addEventListener("message", function (e) {
     if (e.origin !== "https://tally.so" || e.source !== frame.contentWindow) return;
@@ -35,7 +92,7 @@
     if (!data || data.event !== "Tally.FormSubmitted" || leadRecorded) return;
     leadRecorded = true;
     if (typeof window.gtag === "function") {
-      window.gtag("event", "generate_lead", { form_name: "application" });
+      window.gtag("event", "generate_lead", { form_name: bfActive ? "black_friday" : "application" });
     }
   });
 })();
