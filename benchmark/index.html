@@ -70,10 +70,10 @@ table{border-collapse:collapse;width:100%}
 .diff td.num.adv{color:var(--pen)}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 /* segments */
-.seg{margin:0 0 36px}.seg h3{font-size:22px;margin:0 0 12px}
-.seg-row{display:grid;grid-template-columns:minmax(140px,260px) 1fr 56px 64px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule)}
-.seg-row .track{height:16px}
-.seg-row small{display:block;font-size:14px;line-height:1.35;color:var(--muted)}
+.seg{margin:0 0 36px;max-width:760px}.seg h3{font-size:22px;margin:0 0 12px}
+.seg-row{display:grid;grid-template-columns:minmax(140px,240px) 1fr 44px 52px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.seg-row .track{height:12px}
+.seg-row small{display:block;font-size:13px;line-height:1.35;color:var(--muted)}
 .seg-row .n{font:400 12px/1.4 var(--font-mono);color:var(--muted);text-align:right}
 .seg-row .p{font-weight:700;text-align:right}
 .flag{font:400 11px/1 var(--font-mono);color:var(--muted);border:1px dashed var(--rule-strong);padding:2px 4px;margin-left:6px;white-space:nowrap}
