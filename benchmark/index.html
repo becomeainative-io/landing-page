@@ -16,6 +16,7 @@
 body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.5 var(--font-body)}
 a{color:var(--pen)}a:focus-visible,button:focus-visible{outline:2px solid var(--pen);outline-offset:1px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.wrap--narrow{max-width:calc(760px + 2 * var(--gut))}
 section{padding:clamp(48px,7vw,96px) 0;border-top:1px solid var(--rule)}
 section.desk{background:var(--desk)}
 .label{font:400 14px/1.4 var(--font-mono);color:var(--muted);margin:0 0 12px}
@@ -127,7 +128,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <li>People who reply to a message about AI are more interested in AI than the average manager. The benchmark describes this panel, not all managers.</li></ul></div>
 </div>
 </div></section>
-<section><div class="wrap">
+<section><div class="wrap wrap--narrow">
 <p class="label">BAIN-B02 · Who answered</p>
 <h2>Who is in the benchmark</h2>
 <p class="lead">The 781 managers of this edition, by role, experience, company size and region. Each block adds up to 100%. The base is the people who answered the question.</p>
