@@ -97,3 +97,16 @@
     }
   });
 })();
+
+// Analytics: a GA4 event for each click on an element with data-track.
+// The event name is the value of data-track. consent.js sends events only after Accept.
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest("[data-track]");
+  if (!a || typeof window.gtag !== "function") return;
+  window.gtag("event", a.getAttribute("data-track"), {
+    link_text: (a.textContent || "").trim().slice(0, 100),
+    link_url: a.href || "",
+    link_location: a.getAttribute("data-track-location") || "",
+    transport_type: "beacon"
+  });
+}, true);

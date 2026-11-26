@@ -15,6 +15,14 @@
 <!-- Google Analytics 4 + cookie consent (gtag.js loads only after Accept) -->
 <link rel="stylesheet" href="/shared/consent.css">
 <script src="/shared/consent.js?v=2"></script>
+<script>
+// Analytics: a GA4 event for each click on an element with data-track (the same code as in /shared/site.js).
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest("[data-track]");
+  if (!a || typeof window.gtag !== "function") return;
+  window.gtag("event", a.getAttribute("data-track"), { link_text: (a.textContent || "").trim().slice(0, 100), link_url: a.href || "", link_location: a.getAttribute("data-track-location") || "", transport_type: "beacon" });
+}, true);
+</script>
 <link rel="preload" href="/shared/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Source: becomeainative.io-main-project, content/sales/personal-plan/route.html -->
 <style>
@@ -251,7 +259,7 @@ footer .wrap { padding-top: 14px; padding-bottom: 20px; display: flex; justify-c
         <div class="deal-price"><span class="old">€2,500</span><span class="new">€1,250</span><small>BECOME AI-NATIVE, THE INTENSIVE. VAT NOT INCLUDED</small></div>
         <p>This is not a drill. Your personal Black Friday code cuts the price of the intensive in half: <b>€1,250 instead of €2,500</b>. The same 30 days, the same 30 changes, the same live sessions. Do the math: an AI-native manager earns this difference back in <b>less than two weeks</b>. Or keep the money and spend 120 hours alone. We do not judge. Well, only a little. Your company pays? Even better: we already wrote the letter to your manager, and you only press send. On <b>Sat 12 Dec at 23:59 CET</b>, the form closes, all codes stop, and the price goes back to €2,500. No extensions. We asked ourselves twice.</p>
         <div class="deal-cta">
-          <a class="btn" href="https://becomeainative.io/#apply">Get my Black Friday code →</a>
+          <a class="btn" href="https://becomeainative.io/#apply" data-track="offer_click" data-track-location="personal plan">Get my Black Friday code →</a>
           <span class="aside">your future self says thanks</span>
         </div>
       </div>
