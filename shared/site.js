@@ -28,6 +28,15 @@
   var bfActive = now < BF_END;
   if (!bfActive) document.documentElement.classList.remove("bf");
 
+  // ---------- Pass linkedin-id and source to the quiz and the research page ----------
+  var passLinks = document.querySelectorAll("[data-pass-params]");
+  for (var j = 0; j < passLinks.length; j++) {
+    var url = new URL(passLinks[j].getAttribute("href"), location.href);
+    if (params.get("linkedin-id")) url.searchParams.set("linkedin-id", params.get("linkedin-id"));
+    if (params.get("source")) url.searchParams.set("source", params.get("source"));
+    passLinks[j].setAttribute("href", url.pathname + url.search + url.hash);
+  }
+
   // ---------- Letter page: copy button ----------
   var copyBtn = document.querySelector("[data-copy-letter]");
   if (copyBtn) {
