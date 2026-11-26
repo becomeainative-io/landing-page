@@ -34,7 +34,7 @@
     var url = new URL(passLinks[j].getAttribute("href"), location.href);
     if (params.get("linkedin-id")) url.searchParams.set("linkedin-id", params.get("linkedin-id"));
     if (params.get("source")) url.searchParams.set("source", params.get("source"));
-    passLinks[j].setAttribute("href", url.pathname + url.search + url.hash);
+    passLinks[j].setAttribute("href", url.origin === location.origin ? url.pathname + url.search + url.hash : url.toString());
   }
 
   // ---------- Letter page: copy button ----------

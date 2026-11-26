@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- OLD QUIZ, not in use since 26 Nov 2026. The current quiz is the Tally form X54A4L at https://form.becomeainative.io/quiz (content/sales/quiz.md in the main project). Kept only for reference. -->
+<meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quiz effects | Become AI Native</title>
@@ -841,7 +843,7 @@ function result(){
   const copy = async (t, el) => { try { await navigator.clipboard.writeText(t); $(el).textContent = 'COPIED'; } catch(e){ $(el).textContent = t; } };
   $('#copy').onclick = () => copy(share, '#copied');
   $('#again').onclick = intro;
-  if($('#team')) $('#team').onclick = () => copy('https://becomeainative.io/quiz/?source=team', '#teamOk');
+  if($('#team')) $('#team').onclick = () => copy('https://form.becomeainative.io/quiz?source=team', '#teamOk');
 }
 const DEMO_CSS = `.hud{position:sticky;top:0;z-index:10}.office{position:sticky;top:0}.fxrow{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--rule)}
 .fxrow svg.f{width:100px;height:auto}.fxrow .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.fxrow .btn{padding:9px 14px;font-size:15px}
