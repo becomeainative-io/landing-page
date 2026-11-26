@@ -5,8 +5,18 @@
   var GA_ID = "G-DL6QVVYFXH";
   var KEY = "bain_consent"; // "granted" | "denied"
 
+  // Never send a LinkedIn ID to Google: replace its value in every address with "hidden".
+  function hideId(text) { return String(text).replace(/([?&]linkedin-id=)[^&#]*/gi, "$1hidden"); }
+
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag = function () {
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+      if (!arg || typeof arg !== "object" || arg instanceof Date) continue;
+      for (var k in arg) if (typeof arg[k] === "string") arg[k] = hideId(arg[k]);
+    }
+    window.dataLayer.push(arguments); // gtag.js needs the arguments object, not an array
+  };
 
   // No GA4 property yet: skip the banner entirely until a real Measurement ID is set above.
   if (GA_ID === "G-XXXXXXXXXX") { window.bainCookieSettings = function () {}; return; }
@@ -26,7 +36,7 @@
     ad_personalization: "denied"
   });
   gtag("js", new Date());
-  gtag("config", GA_ID);
+  gtag("config", GA_ID, { page_location: location.href, page_referrer: document.referrer });
 
   var gaLoaded = false;
   function loadGA() {
