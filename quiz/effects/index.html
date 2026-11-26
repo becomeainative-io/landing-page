@@ -804,7 +804,7 @@ function result(){
     const sandbox = ["It's restricted","It's not allowed"].includes(S.fit.ai_allowed);
     next = `<div class="label">YOUR NEXT STEP · ${c.jump.toUpperCase()}</div><h3 style="margin-top:4px">The intensive: 30 days, your real work, a connected agent</h3>
       <div class="facts">${OUTCOMES[who].map(o=>`<span>✓ ${o}</span>`).join('')}</div>
-      <div class="facts"><span>14 + 3 bonus lessons</span><span>Live Wednesdays</span><span>No coding</span><span>€2,500 excl. VAT</span><span>Starts Mon 11 Jan 2027</span></div>
+      <div class="facts"><span>14 + 3 bonus lessons</span><span>Weekly live sessions</span><span>No coding</span><span>€2,500 excl. VAT</span><span>Starts Mon 11 Jan 2027</span></div>
       ${sandbox?`<p class="extra"><b>AI restricted at work?</b> Every lab runs on Sandbox, a made-up company with its own Jira, Slack and knowledge base.</p>`:''}
       ${S.fit.manages==='Yes'?`<p class="extra"><b>Managers report to you?</b> The team offer is 20% off.</p>`:''}
       <div class="row"><a class="btn yellow" href="${APPLY_URL}?page=quiz-${c.slug}" rel="noopener">Apply for the intensive</a><a class="btn ghost" href="/#program">See the program</a></div>`;
