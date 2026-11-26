@@ -37,10 +37,11 @@
     passLinks[j].setAttribute("href", url.origin === location.origin ? url.pathname + url.search + url.hash : url.toString());
   }
 
-  // ---------- Letter page: copy button ----------
-  var copyBtn = document.querySelector("[data-copy-letter]");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
+  // ---------- Letter page: copy buttons (above and below the letter) ----------
+  var copyBtns = document.querySelectorAll("[data-copy-letter]");
+  for (var b = 0; b < copyBtns.length; b++) {
+    copyBtns[b].addEventListener("click", function () {
+      var btn = this;
       var parts = document.querySelectorAll("[data-letter-part]");
       var chunks = [];
       for (var i = 0; i < parts.length; i++) {
@@ -48,7 +49,7 @@
         chunks.push(parts[i].innerText.trim());
       }
       var text = chunks.join("\n\n");
-      var status = document.querySelector("[data-copy-status]");
+      var status = btn.parentNode.querySelector("[data-copy-status]");
       function done(msg) { if (status) status.textContent = msg; }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(
