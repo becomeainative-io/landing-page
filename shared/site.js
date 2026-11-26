@@ -64,7 +64,7 @@
 
   // ---------- Tally form ----------
   // Pass cohort, linkedin-id, source and promo from the page to Tally.
-  // After the form, Tally redirects to the Stripe Payment Link with
+  // After the form, Tally redirects (Redirect on completion) to the Stripe Payment Link with
   // prefilled_promo_code={promo}, prefilled_email={email} and client_reference_id={linkedin-id}.
   // promo is BLACKFRIDAY50 only while bfActive, so after Sat 12 Dec the link has no code.
   // Tally's embed.js fits the iframe height to the form (dynamicHeight=1).
@@ -99,35 +99,7 @@
     if (typeof window.gtag === "function") {
       window.gtag("event", "generate_lead", { form_name: bfActive ? "black_friday" : "application" });
     }
-    openPayment(data.payload);
   });
-
-  // ---------- Stripe payment after the form ----------
-  // The payment page opens in a new tab, so the site stays open.
-  // If the browser blocks the new tab, the "Continue to payment" button under the form opens it.
-  var PAY_URL = "https://buy.stripe.com/aFadR86Qx5vPbmn1zkds400";
-  function paymentUrl(payload) {
-    var url = new URL(PAY_URL);
-    if (bfActive) url.searchParams.set("prefilled_promo_code", "BLACKFRIDAY50");
-    var fields = (payload && payload.fields) || [];
-    for (var i = 0; i < fields.length; i++) {
-      if (fields[i].type !== "INPUT_EMAIL") continue;
-      var answer = fields[i].answer;
-      var email = answer && typeof answer === "object" ? answer.value : answer;
-      if (typeof email === "string" && email.indexOf("@") > 0) url.searchParams.set("prefilled_email", email.trim());
-    }
-    if (linkedinId && /^[A-Za-z0-9_-]+$/.test(linkedinId)) url.searchParams.set("client_reference_id", linkedinId);
-    return url.toString();
-  }
-  function openPayment(payload) {
-    var url = paymentUrl(payload);
-    var box = document.querySelector("[data-pay-box]");
-    var link = document.querySelector("[data-pay-link]");
-    if (link) link.setAttribute("href", url);
-    if (box) box.hidden = false;
-    var tab = window.open(url, "_blank");
-    if (tab) tab.opener = null;
-  }
 })();
 
 // Analytics: a GA4 event for each click on an element with data-track.
