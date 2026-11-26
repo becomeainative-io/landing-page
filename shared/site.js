@@ -63,15 +63,19 @@
   }
 
   // ---------- Tally form ----------
-  // Pass cohort, linkedin-id and source from the page address to Tally.
-  // Its confirmation stays inside the iframe.
+  // Pass cohort, linkedin-id, source and promo from the page to Tally.
+  // After the form, Tally redirects to the Stripe Payment Link with
+  // prefilled_promo_code={promo}, prefilled_email={email} and client_reference_id={linkedin-id}.
+  // promo is BLACKFRIDAY50 only while bfActive, so after Sat 12 Dec the link has no code.
   // Tally's embed.js fits the iframe height to the form (dynamicHeight=1).
   var frame = document.querySelector(".tally-embed");
   if (!frame) return;
   var src = new URL(frame.getAttribute("data-tally-src"));
   src.searchParams.set("cohort", String(COHORT));
   src.searchParams.set("source", params.get("source") || "website");
-  if (params.get("linkedin-id")) src.searchParams.set("linkedin-id", params.get("linkedin-id"));
+  var linkedinId = params.get("linkedin-id");
+  if (linkedinId && /^[A-Za-z0-9_-]+$/.test(linkedinId)) src.searchParams.set("linkedin-id", linkedinId);
+  if (bfActive) src.searchParams.set("promo", "BLACKFRIDAY50");
   frame.setAttribute("data-tally-src", src.toString());
   function loadTally() {
     if (typeof window.Tally !== "undefined") window.Tally.loadEmbeds();
