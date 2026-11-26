@@ -85,7 +85,7 @@
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
       '<p class="cc-banner__text">We use Google Analytics cookies to understand how visitors use this site. ' +
-      'They are only set if you accept. <a href="/privacy/">Privacy policy</a></p>' +
+      'They are only set if you accept. <a href="/privacy/" target="_blank" rel="noopener">Privacy policy</a></p>' +
       '<div class="cc-banner__actions">' +
         '<button type="button" class="cc-btn cc-btn--outline" data-cc="denied">Decline</button>' +
         '<button type="button" class="cc-btn cc-btn--primary" data-cc="granted">Accept</button>' +
