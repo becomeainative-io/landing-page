@@ -166,6 +166,9 @@ h1, h2, p, blockquote { margin: 0; }
   transition: transform .15s ease;
 }
 .btn:hover { color: var(--ink); transform: translateY(-2px); }
+/* Inverts on hover: ink fill, marker text. For a button that must stand out (research CTA). */
+.btn--invert { border: 2px solid var(--ink); transition: transform .15s ease, background-color .15s ease, color .15s ease; }
+.btn--invert:hover, .btn--invert:focus-visible { background: var(--ink); color: var(--marker); transform: translateY(-3px); }
 .btn--lg { font-size: 19px; padding: 18px 26px; }
 .btn--block { width: 100%; font-size: 18px; padding: 18px; }
 .nav .btn { text-decoration: none; }
