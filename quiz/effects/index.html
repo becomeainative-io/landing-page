@@ -573,7 +573,7 @@ const PLANS = {
   ["Move one workflow to an agent (Lessons 03, 12)","Connect the missing systems. Dry-run table first, you approve, one write at a time, every write read back.","one full run with no copy-paste."],
   ["Put it on a schedule (Lesson 08)","Move it to n8n with dry_run on, an approval step, a duplicate key, 3 retries and an error route. Add a registry row.","two scheduled runs, one stopped duplicate and one tested failure notice."],
   ["Hand it to your team (Lessons 07, 04)","Package it as a skill with one owner. Measure the minutes per run before and after.","a colleague ran it without your help."]]},
- kwame:{intro:"Your agents read your systems, and you brief, approve and check. You already work the way the intensive ends. You don't need a course from us.", weeks:[
+ kwame:{intro:"Your agents read your systems, and you brief, approve and check. You already work the way the intensive ends. You don't need our intensive.", weeks:[
   ["Measure your agent (Lesson 15)","Build a golden set of 20 real cases: about 12 typical, 5 edge cases, 3 must-pass. Set the pass threshold before the run.","you have a pass rate and you've read every failure."],
   ["Gates by blast radius (Lesson 13)","Reads: no gate. Shared systems: dry run, approve, read back. Send or publish: approve each item. Delete or permissions: never by an agent.","every workflow has its gate written down."],
   ["Cost (Lesson 13)","Runs × (1 + retry rate) × tokens × price, plus services, plus review minutes. Human review is usually the largest line.","every automation has a budget owner."],
@@ -594,7 +594,7 @@ const TOOLS = ["Slack","Teams","Jira","Linear","Confluence","Notion","Gmail","Ou
 const FIT = [
  ['years',"How long have you been in a manager role?",[["Under 18 months",'rocket'],["18 months to 3 years",'calendar'],["3–5 years",'calendar'],["5–10 years",'calendar'],["10+ years",'muscle']]],
  ['ai_allowed',"Does your company support you with AI?",[["Yes, with time, tools and training",'heart'],["Tools, but no training",'gear'],["It's allowed, but I'm on my own",'hand'],["It's restricted",'lock'],["It's not allowed",'ban'],["I'm between roles or freelance",'rocket']]],
- ['keep_up',"How do you keep up with AI?",[["I don't, really",'zzz'],["Newsletters and LinkedIn",'newspaper'],["Courses",'grad'],["Colleagues",'people'],["I try new tools every week",'sparkle'],["Other",'question']]],
+ ['keep_up',"How do you keep up with AI?",[["I don't, really",'zzz'],["Newsletters and LinkedIn",'newspaper'],["Training programs",'grad'],["Colleagues",'people'],["I try new tools every week",'sparkle'],["Other",'question']]],
  ['manages',"Do other managers report to you?",[["Yes",'people'],["No",'hand']]],
  ['time',"Would you trade 30 hours this month for hours back every week after it?",[["I'm in",'rocket'],["I'll make it work",'muscle'],["Not this month",'hourglass']]],
 ];
@@ -794,13 +794,13 @@ function result(){
   const min = Math.min(...AREAS.map(([k])=>R.areas[k]));
   const weakest = AREAS.find(([k])=>R.areas[k]===min);
   const tip = S.chaos>=1 ? GUARDRAILS : [`START HERE · ${weakest[1].toUpperCase()} · LESSONS ${weakest[2]}`, weakest[3]];
-  const course = ['sofia','oksana','lukas'].includes(who) && R.fitOk;
+  const fitsIntensive = ['sofia','oksana','lukas'].includes(who) && R.fitOk;
   let next;
   if(who==='kwame'){
-    next = `<div class="label">YOUR NEXT STEP</div><h3 style="margin-top:4px">No course for you. Take your team with you.</h3>
+    next = `<div class="label">YOUR NEXT STEP</div><h3 style="margin-top:4px">No intensive for you. Take your team with you.</h3>
       <p>You already work the way our intensive ends. Send this to the managers around you.</p>
       <div class="row"><button class="btn" id="team">Copy link for your team</button><span class="label" id="teamOk"></span></div>`;
-  } else if(course){
+  } else if(fitsIntensive){
     const sandbox = ["It's restricted","It's not allowed"].includes(S.fit.ai_allowed);
     next = `<div class="label">YOUR NEXT STEP · ${c.jump.toUpperCase()}</div><h3 style="margin-top:4px">The intensive: 30 days, your real work, a connected agent</h3>
       <div class="facts">${OUTCOMES[who].map(o=>`<span>✓ ${o}</span>`).join('')}</div>
