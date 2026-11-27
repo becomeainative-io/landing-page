@@ -449,5 +449,23 @@ window.addEventListener('load', render);   // the card height depends on the pic
 render();
 </script>
 
+<script>
+// The quiz (Tally form X54A4L) redirects here with ?linkedin-id=...&source=quiz&score=... (27 Nov 2026).
+// Give linkedin-id and source to the offer button, so that the form 4aXEqb on the main page and Stripe know the lead.
+(function () {
+  var p = new URLSearchParams(location.search);
+  var id = p.get('linkedin-id');
+  document.querySelectorAll('a[href="https://becomeainative.io/#apply"]').forEach(function (a) {
+    var u = new URL('https://becomeainative.io/');
+    if (id && /^[A-Za-z0-9_-]+$/.test(id)) u.searchParams.set('linkedin-id', id);
+    u.searchParams.set('source', p.get('source') || 'plan');
+    u.hash = 'apply';
+    a.href = u.toString();
+  });
+  // The Conductor (26 to 28 points) is AI-native and gets the plan with no offer (messages.md, E2 rules).
+  if (Number(p.get('score')) >= 26) document.querySelectorAll('.deal').forEach(function (d) { d.style.display = 'none'; });
+})();
+</script>
+
 </body>
 </html>
